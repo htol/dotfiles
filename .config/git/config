@@ -1,0 +1,16 @@
+[user]
+#	email = 
+#	name = 
+
+[alias]
+  co = checkout
+  st = status
+  br = branch
+  ci = commit
+  lp = log --oneline
+  last = log -1 HEAD --
+  poh = push origin head
+  rc = rebase --continue
+  prom = pull --rebase origin master
+  unastage = reset HEAD --
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
