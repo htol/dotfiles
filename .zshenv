@@ -1,3 +1,4 @@
-ZDOTDIR=$HOME/.config/zsh
-HISTFILE=$ZDOTDIR/.zsh_history
+export ZDOTDIR=$HOME/.config/zsh
+export XDG_CONFIG_HOME=$HOME/.config
+export HISTFILE=$ZDOTDIR/.zsh_history
 export PYENV_ROOT=$HOME/.local/pyenv
