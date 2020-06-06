@@ -42,13 +42,10 @@ Ctrl+w Ctrl+O - close all non active pane
 
 ## Exit vim
 
-
 :!sudo shutdown now - just kidding  
-
 ZZ - exit vim without any changes  
 
 
 ## Save wile without required permission
 
-
-:w !sudo tee %
+:w !sudo tee %  
