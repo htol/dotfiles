@@ -1,0 +1,17 @@
+### Config for using vagrant with virtual box from WSL
+# export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+# export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+
+export ZDOTDIR=$HOME/.config/zsh
+export XDG_CONFIG_HOME=$HOME/.config
+export HISTFILE=$ZDOTDIR/.zsh_history
+export PYENV_ROOT=$HOME/.local/pyenv
+export POETRY_HOME=$HOME/.local/poetry
+
+export GOPATH=$HOME/go
+
+if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
+    export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
+export PATH=$PATH:$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin

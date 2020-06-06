@@ -108,9 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export GOPATH=$HOME/go
-
-export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin":~/bin:$GOPATH/bin
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8

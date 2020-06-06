@@ -96,14 +96,7 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# TODO: move common alias to shell independend config
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -116,11 +109,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH="$HOME/.local/pyenv/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
-# export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
-# export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
-
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if command -v keychain 1>/dev/null 2>&1; then
+  eval `keychain --eval --agents ssh id_rsa id_ed25519`
+else
+  echo "Keychain not installed"
+fi
