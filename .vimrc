@@ -5,6 +5,8 @@ map <Space> <leader>
 let mapleader = "\<Space>"
 
 set runtimepath+=~/.local/vim
+set runtimepath+=~/.config/nvim
+source ~/.config/nvim/init.vim
 
 set autoindent
 "set smartident
@@ -62,22 +64,22 @@ endfunction
 set tabline=%!Tabline()
 
 
-call plug#begin('~/.config/vim/plugged')
-
-Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-utils/vim-man'
-Plug 'lyuts/vim-rtags'
-Plug 'kien/ctrlp.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'mbbill/undotree'
-
-call plug#end()
-
-colorscheme gruvbox
-set background=dark
-
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
+" call plug#begin('~/.config/vim/plugged')
+" 
+" Plug 'morhetz/gruvbox'
+" Plug 'jremmen/vim-ripgrep'
+" Plug 'tpope/vim-fugitive'
+" Plug 'vim-utils/vim-man'
+" Plug 'lyuts/vim-rtags'
+" Plug 'kien/ctrlp.vim'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'mbbill/undotree'
+" 
+" call plug#end()
+" 
+" colorscheme gruvbox
+" set background=dark
+" 
+" if executable('rg')
+"     let g:rg_derive_root='true'
+" endif
