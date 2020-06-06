@@ -46,6 +46,6 @@ Ctrl+w Ctrl+O - close all non active pane
 ZZ - exit vim without any changes  
 
 
-## Save wile without required permission
+## Save file without required permission
 
 :w !sudo tee %  
