@@ -16,17 +16,18 @@ yy - copy current line
 dd - cut current line  
 p/P - put (paste) on next/current line  
 
-##
-x - delete one symbol  
-s - delete one symbol and enter insert mode  
+## Operation with characters
+x - delete one character  
+s - delete one character and enter insert mode  
 S - delete line and enter insert mode  
 ~ - capitalyse character  
+r - replace current character  
 
 ## Ins ans outs
 di{, ci{, yi{, vi{  
 da, ca, ya, va, =a  
 
-## g
+## g for gump
 gi - jump to last insert mode  
 gv - jump to last visual mode  
 gq - adjust very long comment  
