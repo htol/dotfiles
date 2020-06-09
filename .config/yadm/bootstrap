@@ -16,12 +16,12 @@ echo "== Init submodules"
 yadm submodule update --recursive --init
 
 # Making Vim directories.
-echo "== Creating directories for Vim..."
+echo "== Creating directories for Vim"
 mkdir -p ~/.config/nvim/vim_undodir
 
 # Install vim-plug plugins.
 # if command -v vim >/dev/null 2>&1; then
-#     echo ":: Install Vim plugins..."
+#     echo "== Install Vim plugins"
 #     vim '+PackUpdate' '+qall'
 # fi
 
