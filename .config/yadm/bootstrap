@@ -9,12 +9,21 @@ cd "$HOME"
 
 yadm gitconfig core.worktree $HOME
 
-echo "Updating the yadm repo origin URL"
+echo "== Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:htol/dotfiles.git"
 
-echo "Init submodules"
+echo "== Init submodules"
 yadm submodule update --recursive --init
 
+# Making Vim directories.
+echo "== Creating directories for Vim..."
+mkdir -p ~/.config/nvim/vim_undodir
+
+# Install vim-plug plugins.
+# if command -v vim >/dev/null 2>&1; then
+#     echo ":: Install Vim plugins..."
+#     vim '+PackUpdate' '+qall'
+# fi
 
 # TODO: create directories for vim undo
 
