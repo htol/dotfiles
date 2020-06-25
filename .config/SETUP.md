@@ -1,12 +1,11 @@
 # Hello
 Short notes for enviroment setup.
 
-
 change to zsh
 
 brew: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install golang mtr mc wget neovim tmux htop the_silver_searcher
+brew install golang mtr mc wget neovim tmux htop the_silver_searcher ripgrep
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
@@ -22,7 +21,6 @@ poetry config virtualenvs.in-project true
 
 # ansible
 cd deploy; git clone https://github.com/ansible/ansible.git
-
 
 telegram
 iterm2
