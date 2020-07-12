@@ -15,9 +15,26 @@ yadm remote set-url origin "git@github.com:htol/dotfiles.git"
 echo "== Init submodules"
 yadm submodule update --recursive --init
 
-# Making Vim directories.
-echo "== Creating directories for Vim"
-mkdir -p ~/.config/nvim/vim_undodir
+if [ "$system_type" = "Linux" ]; then
+
+  # node.js version manager
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.config}/nvm" ]; then
+    echo "== Installing nvm"
+    export NVM_DIR="$HOME/.config/nvm"
+    mkdir -p $NVM_DIR
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  fi
+
+  echo "== Creating directories for Vim"
+  mkdir -p ~/.config/nvim/vim_undodir
+
+  # Download vim-plug
+  if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
+    echo "Downloading vim-plug..."
+    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
+fi # Linux
 
 # Install vim-plug plugins.
 # if command -v vim >/dev/null 2>&1; then

@@ -72,22 +72,11 @@ endfunction
 set tabline=%!Tabline()
 
 
-" call plug#begin('~/.config/vim/plugged'
-" 
-" Plug 'morhetz/gruvbox'
-" Plug 'jremmen/vim-ripgrep'
-" Plug 'tpope/vim-fugitive'
-" Plug 'vim-utils/vim-man'
-" Plug 'lyuts/vim-rtags'
-" Plug 'kien/ctrlp.vim'
-" Plug 'Valloric/YouCompleteMe'
+call plug#begin('~/.config/vim/plugged')
 " Plug 'mbbill/undotree'
-" 
-" call plug#end()
-" 
-" colorscheme gruvbox
-" set background=dark
-" 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
 " if executable('rg')
 "     let g:rg_derive_root='true'
 " endif

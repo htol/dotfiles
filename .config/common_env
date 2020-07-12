@@ -2,13 +2,17 @@
 # export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 # export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
 
-export ZDOTDIR=$HOME/.config/zsh
-export XDG_CONFIG_HOME=$HOME/.config
-export HISTFILE=$ZDOTDIR/.zsh_history
-export PYENV_ROOT=$HOME/.local/pyenv
-export POETRY_HOME=$HOME/.local/poetry
+export ZDOTDIR="$HOME/.config/zsh"
+export XDG_CONFIG_HOME="$HOME/.config"
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export PYENV_ROOT="$HOME/.local/pyenv"
+export POETRY_HOME="$HOME/.local/poetry"
 
-export GOPATH=$HOME/go
+export GOPATH="$HOME/go"
+export GO111MODULE=on
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
     export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

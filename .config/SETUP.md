@@ -7,6 +7,16 @@ brew: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/
 
 brew install golang mtr mc wget neovim tmux htop the_silver_searcher ripgrep
 
+# latest nvim for ubuntu
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install neovim
+
+# golang
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt install golang-go
+
 # pyenv
 git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
 echo 'export PYENV_ROOT="$HOME/.local/pyenv"' >> ~/.zshrc
