@@ -14,7 +14,7 @@ sudo apt-get update
 sudo apt-get install neovim
 
 # CoC plugins
-:CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python
+:CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql
 
 # golang
 sudo add-apt-repository ppa:longsleep/golang-backports
