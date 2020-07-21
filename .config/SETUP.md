@@ -13,6 +13,10 @@ sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get install neovim
 
+# install latest node.js through nvm
+required for CoC
+nvm install --lts node
+
 # CoC plugins
 :CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql
 
