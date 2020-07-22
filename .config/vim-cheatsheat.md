@@ -50,8 +50,27 @@ ZZ - exit vim without any changes
 
 :w !sudo tee %  
 
+## Registers
+0 - always contain latest yank data
+1 - always contain last deleted data
+"" - unnamed register contain any last action with data. d/y/c/...
+
+% - current file. 'Ctrl+r %' to insert it in buffer or command line
+%:p - full path
+%:h - head of file name. example ":!mkdir %:h" will create a folder
+%:t - tail of file name
+%:r - root
+%:e - extention
+%:~ - relative to home direcory
+
+check :help filename-modifier to more
+
+. - last insert mode
+: - last command mode
+
+:call ClearRegs() - to clear registers
 
 ## How to edit macro
 For example write macro under "a" register. To edit enter the next command.
 :let @a='
-Press 'Ctrl+r a' it will populate line with register content. Don't forget closing quote.
+Press 'Ctrl+r a'. 'a' for named register where macros tored. It will populate line with register content. Don't forget closing quote.
