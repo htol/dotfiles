@@ -49,3 +49,9 @@ ZZ - exit vim without any changes
 ## Save file without required permission
 
 :w !sudo tee %  
+
+
+## How to edit macro
+For example write macro under "a" register. To edit enter the next command.
+:let @a='
+Press 'Ctrl+r a' it will populate line with register content. Don't forget closing quote.
