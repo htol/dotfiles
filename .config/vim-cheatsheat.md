@@ -37,6 +37,7 @@ Ctrl+w Ctrl+v - vertical split
 Ctrl+w Ctrl+ - horisontal split  
 Ctrl+w h/j/k/l - move between panes  
 Ctrl+w Ctrl+O - close all non active pane  
+Ctrl+w Ctrl+r - Rotate windows downwards/rightwards. Swapped panes in case of 2 panes.
 
 :Ex - file manager  
 
