@@ -68,6 +68,8 @@ dash # API browser
 brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtualbox virtualbox-extension-pack vagrant vlc
 ```
 
+# macosx
+
 fonts:
 ```
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
