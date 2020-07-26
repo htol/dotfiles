@@ -81,9 +81,9 @@ Press 'Ctrl+r a'. 'a' for named register where macros tored. It will populate li
 :diffthis - adding current file to diff, switch to other file and enter it again  
 :windo diffthis - diff all panes in window  
 :diffoff - disable diff  
-:windo diffoff - disable for window
-:diffupdate - update after made changes inside vim
-Ctrl+W W - switch between panes
+:windo diffoff - disable for window  
+:diffupdate - update after made changes inside vim  
+Ctrl+W W - switch between panes  
 zr - expand all folds  
 zm - colapse all folds  
 
