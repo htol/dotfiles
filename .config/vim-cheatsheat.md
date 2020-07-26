@@ -86,4 +86,9 @@ Press 'Ctrl+r a'. 'a' for named register where macros tored. It will populate li
 Ctrl+W W - switch between panes  
 zr - expand all folds  
 zm - colapse all folds  
-
+zo - Open folded lines.  
+zc - Close folded lines.  
+do - Get changes from other window into the current window.  
+dp - Put the changes from current window into the other window.  
+]c - Jump to the next change.  
+[c - Jump to the previous change.  
