@@ -1,5 +1,12 @@
 set t_Co=256
 
+
+"if &diff
+"   setup for diff mode
+"else
+"   setup for non-diff mode
+"endif
+
 let s:portable = expand('<sfile>:p:h')
 exe "source " . s:portable . '/colors_init.vim'
 
