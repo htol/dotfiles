@@ -16,3 +16,7 @@
   prom = pull --rebase origin master
   unastage = reset HEAD --
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  sshow = "{ git stash show stash^{/$*} -p; }; f"
+  sapply = "!f() { git stash apply stash^{/$*}; }; f"
+[pull]
+  ff = only
