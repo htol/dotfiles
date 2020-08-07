@@ -62,7 +62,7 @@ poetry config virtualenvs.in-project true
 
 # ansible
 ```
-cd deploy; git clone https://github.com/ansible/ansible.git
+git clone https://github.com/ansible/ansible.git ~/.local/ansible
 ```
 
 
