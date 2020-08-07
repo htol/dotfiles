@@ -113,8 +113,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 load-ansible(){
-	if [ -f ${HOME}/deploy/ansible/hacking/env-setup ]; then
-		source ~/deploy/ansible/hacking/env-setup
+	# TODO: ansible path as env variable?
+	if [ -f ${HOME}/.local/ansible/hacking/env-setup ]; then
+		source ~/.local/ansible/hacking/env-setup
 		echo "Ansible environment loaded"
 	fi
 }
