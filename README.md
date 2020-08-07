@@ -6,3 +6,4 @@ mkdir -p ~/.local/bin
 ln -s ~/.local/yadm-project/yadm ~/.local/bin/yadm
 ~/.local/bin/yadm clone https://github.com/htol/dotfiles.git
 ```
+Further setup can be found [here](https://github.com/htol/dotfiles/blob/master/.config/SETUP.md)
