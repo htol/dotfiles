@@ -19,6 +19,11 @@ sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get install neovim
 ```
+adding providers
+```
+python3 -m pip install --user --upgrade pynvim
+npm install -g neovim
+```
 
 # install latest node.js through nvm
 ```
