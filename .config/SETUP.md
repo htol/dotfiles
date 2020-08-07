@@ -63,6 +63,7 @@ poetry config virtualenvs.in-project true
 # ansible
 ```
 git clone https://github.com/ansible/ansible.git ~/.local/ansible
+pip install -r ~/.local/ansible/requirements.txt
 ```
 
 
