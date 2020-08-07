@@ -1,11 +1,15 @@
 # Hello
 Short notes for enviroment setup.
 
-change to zsh
+# zsh
 
 ```
 brew: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install golang mtr mc wget neovim tmux htop the_silver_searcher ripgrep
+```
+oh-my-zsh manual install
+```
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
 ```
 
 # latest nvim for ubuntu before 20.04
