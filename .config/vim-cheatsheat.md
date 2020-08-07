@@ -71,6 +71,10 @@ check :help filename-modifier to more
 
 :call ClearRegs() - to clear registers  
 
+## Working with macro
+Enter "q" to start recording macro. Choose register to store macro, e.g. "w". Start doing required actions. Press "q" to stop recording macro.  
+:%normal @w - replay macro to whole buffer. Alternative: VG:norm @w
+
 ## How to edit macro
 For example write macro under "a" register. To edit enter the next command.  
 :let @a='  
