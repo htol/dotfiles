@@ -1,11 +1,11 @@
 set t_Co=256
 
 
-"if &diff
-"   setup for diff mode
-"else
+if &diff
+  set relativenumber
+else
 "   setup for non-diff mode
-"endif
+endif
 
 let s:portable = expand('<sfile>:p:h')
 exe "source " . s:portable . '/colors_init.vim'
@@ -16,10 +16,14 @@ exe "source " . s:portable . '/colors_init.vim'
 
 syntax on
 
-" nnoremap <Space> <Nop>
-" map <Space> <leader>
-" let mapleader = "\<Space>"
-let mapleader = " "
+"nnoremap <Space> <Nop>
+"map <Space> <leader>
+"let mapleader = "\<Space>"
+"let mapleader = " "
+
+" go to next/previous changes in diff and center the line on screen
+nnoremap ]c ]czz
+nnoremap [c [czz
 
 set runtimepath+=~/.local/vim
 
@@ -98,3 +102,6 @@ if !has("clipboard") && executable("clip.exe")
     noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
 endif
+
+
+set relativenumber

@@ -57,6 +57,12 @@ libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 ```
 
+Install python by pyenv
+```
+pyenv install 3.7.3
+pyenv global 3.7.3
+```
+
 # poetry
 ```
 echo 'export POETRY_HOME="$HOME/.local/poetry"' >> ~/.zshrc
