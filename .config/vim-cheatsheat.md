@@ -11,7 +11,7 @@ $, _ - goto begin/end of the line
 I, A - goto first/last character of the line and enter insert mode  
 0 - goto begin of the line  
 gg - first line of file  
-G - last line of file
+G - last line of file  
 
 ## Copy/paste
 yy - copy current line  
