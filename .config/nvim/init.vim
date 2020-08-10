@@ -1,3 +1,6 @@
+nnoremap <Space> <Nop>
+let mapleader = "\<Space>"
+
 set t_Co=256
 
 
@@ -15,11 +18,6 @@ exe "source " . s:portable . '/colors_init.vim'
 " set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
 syntax on
-
-"nnoremap <Space> <Nop>
-"map <Space> <leader>
-"let mapleader = "\<Space>"
-"let mapleader = " "
 
 " go to next/previous changes in diff and center the line on screen
 nnoremap ]c ]czz
