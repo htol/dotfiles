@@ -12,6 +12,9 @@ I, A - goto first/last character of the line and enter insert mode
 0 - goto begin of the line  
 gg - first line of file  
 G - last line of file  
+zz - move current line to center of screen  
+zt - -//- to the top  
+zb - -//- to the bottom  
 
 ## Copy/paste
 yy - copy current line  
