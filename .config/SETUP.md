@@ -67,7 +67,7 @@ pyenv global 3.7.3
 ```
 echo 'export POETRY_HOME="$HOME/.local/poetry"' >> ~/.zshrc
 echo 'export PATH="$POETRY_HOME/bin:$PATH"' >> ~/.zshrc
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - --no-modify-path
 poetry config virtualenvs.in-project true
 ```
 
