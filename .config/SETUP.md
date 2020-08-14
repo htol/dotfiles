@@ -32,6 +32,7 @@ nvm install --lts node
 ```
 
 # CoC plugins
+Don't forget :PlugInstall
 ```
 :CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql
 ```
