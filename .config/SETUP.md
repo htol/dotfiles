@@ -26,8 +26,8 @@ npm install -g neovim
 ```
 
 # install latest node.js through nvm
-```
 required for CoC
+```
 nvm install --lts node
 ```
 
