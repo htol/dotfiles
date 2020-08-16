@@ -93,6 +93,7 @@ brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtua
 ```
 
 # macosx
+Check bootstrap! There is already a banch of setting to configure macosx. Here is only often used.
 
 fonts:
 ```
