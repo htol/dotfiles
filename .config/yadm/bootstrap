@@ -39,7 +39,7 @@ if [ "$system_type" = "Linux" ]; then
   # installing poetry
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ]; then
     echo "== Installing poetry"
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - --no-modify-path
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - --no-modify-path
   fi
 
   # installing ansible
