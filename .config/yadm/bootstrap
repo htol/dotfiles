@@ -13,7 +13,7 @@ echo "== Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:htol/dotfiles.git"
 
 echo "== Init submodules"
-yadm submodule update --recursive --init
+yadm submodule update --recursive --init --remote
 
 if [ "$system_type" = "Linux" ]; then
 
@@ -28,6 +28,32 @@ if [ "$system_type" = "Linux" ]; then
     git fetch --tags origin
     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
     cd
+  fi
+
+  # installing pyenv
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv" ]; then
+    echo "== Installing pyenv"
+    git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
+  fi
+
+  # installing poetry
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ]; then
+    echo "== Installing poetry"
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - --no-modify-path
+  fi
+
+  # installing ansible
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ]; then
+    echo "== Installing ansible"
+    git clone https://github.com/ansible/ansible.git ~/.local/ansible
+    source ~/.local/ansible/hacking/env-setup
+    pip install -r ~/.local/ansible/requirements.txt
+  fi
+
+  # installing oh-my-zsh
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/oh-my-zsh" ]; then
+    echo "== Installing oh-my-zsh"
+    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
   fi
 
   echo "== Creating directories for Vim"
