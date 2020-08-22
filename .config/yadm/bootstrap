@@ -46,7 +46,7 @@ if [ "$system_type" = "Linux" ]; then
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ]; then
     echo "== Installing ansible"
     git clone https://github.com/ansible/ansible.git ~/.local/ansible
-    source ~/.local/ansible/hacking/env-setup
+    . ~/.local/ansible/hacking/env-setup
     pip install -r ~/.local/ansible/requirements.txt
   fi
 
