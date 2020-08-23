@@ -5,7 +5,7 @@
 	sharedrepository = 0600
 	worktree = /home/atsygane
 [advice]
-    detachedHead = false
+	detachedHead = false
 [receive]
 	denyNonFastforwards = true
 [status]

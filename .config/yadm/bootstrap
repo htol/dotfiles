@@ -48,7 +48,11 @@ if [ "$system_type" = "Linux" ]; then
     echo "== Installing ansible"
     git clone https://github.com/ansible/ansible.git ~/.local/ansible
     . ~/.local/ansible/hacking/env-setup
-    pip install -r ~/.local/ansible/requirements.txt
+    cd ~/.local/ansible
+    python3 -m venv venv
+    . venv/bin/activate
+    pip install -r requirements.txt
+    cd
   fi
 
   # installing oh-my-zsh
