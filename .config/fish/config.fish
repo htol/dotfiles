@@ -1,3 +1,5 @@
+cd
+
 if status --is-interactive
     keychain --agents ssh github id_rsa id_ed25519
 end
