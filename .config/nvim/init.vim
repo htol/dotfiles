@@ -10,8 +10,8 @@ else
 "   setup for non-diff mode
 endif
 
-let s:portable = expand('<sfile>:p:h')
-exe "source " . s:portable . '/colors_init.vim'
+"let s:portable = expand('<sfile>:p:h')
+"exe "source " . s:portable . '/colors_init.vim'
 
 "set list
 "set listchars=tab:→\ ,nbsp:␣,trail:•,precedes:«,extends:»
@@ -85,7 +85,12 @@ set tabline=%!Tabline()
 call plug#begin('~/.config/vim/plugged')
 " Plug 'mbbill/undotree'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'morhetz/gruvbox'
 call plug#end()
+
+set bg=dark
+let g:gruvbox_contrast_dark = "soft"
+colorscheme gruvbox
 
 " if executable('rg')
 "     let g:rg_derive_root='true'
