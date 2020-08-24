@@ -82,7 +82,7 @@ endfunction
 set tabline=%!Tabline()
 
 
-call plug#begin('~/.config/vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Plug 'mbbill/undotree'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'morhetz/gruvbox'
