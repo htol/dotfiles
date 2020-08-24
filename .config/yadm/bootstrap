@@ -18,9 +18,9 @@ yadm submodule update --recursive --init --remote
 if [ "$system_type" = "Linux" ]; then
 
   # node.js version manager
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.config}/nvm" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/nvm" ]; then
     echo "== Installing nvm"
-    export NVM_DIR="$HOME/.config/nvm"
+    export NVM_DIR="$HOME/.local/nvm"
     mkdir -p $NVM_DIR
     # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
     git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
@@ -59,6 +59,18 @@ if [ "$system_type" = "Linux" ]; then
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/oh-my-zsh" ]; then
     echo "== Installing oh-my-zsh"
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
+  fi
+
+  # installing fisher
+  if [ ! -d "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
+      echo "== Installing fisher"
+      curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+  fi
+
+  # installing fish-gruvbox
+  if [ ! -d "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/theme_gruvbox.fish" ]; then
+      echo "== Installing fish-gruvbox"
+      fish -c "fisher add jomik/fish-gruvbox"
   fi
 
   echo "== Creating directories for Vim"
