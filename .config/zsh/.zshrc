@@ -6,10 +6,26 @@
 #plugins=(
 #  git colorize pip python tmux python
 #)
+#
+#source $ZSH/oh-my-zsh.sh
 
 ZSH_COLORIZE_STYLE="colorful"
 
-#source $ZSH/oh-my-zsh.sh
+
+autoload colors
+colors
+
+setopt prompt_subst
+
+###
+# zsh gentoo theme
+#
+function prompt_char {
+	if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
+}
+
+PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(prompt_char)%{$reset_color%} '
+
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
