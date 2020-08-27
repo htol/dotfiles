@@ -11,7 +11,7 @@ export POETRY_HOME="$HOME/.local/poetry"
 export GOPATH="$HOME/go"
 export GO111MODULE=on
 
-export NVM_DIR="$HOME/.config/nvm"
+export NVM_DIR="$HOME/.local/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
