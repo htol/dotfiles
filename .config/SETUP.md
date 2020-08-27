@@ -35,7 +35,7 @@ nvm install --lts node
 From command line
 ```
 nvim +PlugInstall +qall
-nvim +'CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql'
+nvim +'CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql' +qall
 ```
 If you are inside vim
 ```
