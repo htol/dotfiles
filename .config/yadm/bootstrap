@@ -1,16 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 update_shell_env()
 {
-  . $HOME/.zshenv
-  . $HOME/.config/zsh/.zprofile
-  . $HOME/.config/zsh/.zshrc
-  rehash
+  . $HOME/.profile
 }
 
-update_shell_env()
+update_shell_env
 
 # Linux, Darwin, FreeBSD
 system_type=$(uname -s)
@@ -27,9 +24,9 @@ yadm submodule update --recursive --init --remote
 
 if [ "$system_type" = "Linux" ]; then
 
-  # node.js version manager
+  # node.js version manager and Node LTS
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/nvm" ]; then
-    echo "== Installing nvm"
+    echo "== Installing nvm and Node LTS"
     export NVM_DIR="$HOME/.local/nvm"
     mkdir -p $NVM_DIR
     # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -38,6 +35,8 @@ if [ "$system_type" = "Linux" ]; then
     git fetch --tags origin
     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
     cd
+    . $NVM_DIR/nvm.sh
+    nvm install --lts node
   fi
 
   # installing pyenv

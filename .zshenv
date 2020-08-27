@@ -1,1 +1,1 @@
-source ~/.config/common_env
+. ~/.config/common_env
