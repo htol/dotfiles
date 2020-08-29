@@ -13,11 +13,6 @@ export KEYCHAIN_DIR="$HOME/.cache/keychain"
 export GOPATH="$HOME/go"
 export GO111MODULE=on
 
-export NVM_DIR="$HOME/.local/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export FNM_DIR="$HOME/.local/fnm"
 
-if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
-    export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-fi
-
-export PATH=$PATH:$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin
+export PATH="$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$FNM_DIR:$PATH"

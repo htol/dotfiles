@@ -44,4 +44,10 @@ load-ansible(){
 	fi
 }
 
+[ -s "$FNM_DIR/fnm" ] && eval "$(fnm env --shell=zsh)"
+
+if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
+     export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
 cd

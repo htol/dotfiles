@@ -25,18 +25,14 @@ yadm submodule update --recursive --init --remote
 if [ "$system_type" = "Linux" ]; then
 
   # node.js version manager and Node LTS
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/nvm" ]; then
-    echo "== Installing nvm and Node LTS"
-    export NVM_DIR="$HOME/.local/nvm"
-    mkdir -p $NVM_DIR
-    # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-    git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-    cd "$NVM_DIR"
-    git fetch --tags origin
-    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-    cd
-    . $NVM_DIR/nvm.sh
-    nvm install --lts node
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/fnm" ]; then
+    echo "== Installing fnm and Node LTS"
+    export FNM_DIR="${XDG_DATA_HOME:-$HOME/.local}/fnm"
+    export PATH=$FNM_DIR:$PATH
+    curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- -s -d ~/.local/fnm
+    eval `fnm env --shell=bash`
+    fnm install latest-v0.12.x
+    fnm use latest-v0.12.x
   fi
 
   # installing pyenv
@@ -65,10 +61,10 @@ if [ "$system_type" = "Linux" ]; then
   fi
 
   # installing oh-my-zsh
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/oh-my-zsh" ]; then
-    echo "== Installing oh-my-zsh"
-    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
-  fi
+  # if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/oh-my-zsh" ]; then
+  #   echo "== Installing oh-my-zsh"
+  #   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
+  # fi
 
   # installing fisher
   if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
