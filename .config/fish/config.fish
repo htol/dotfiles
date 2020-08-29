@@ -7,7 +7,9 @@ cd
 set KEYCHAIN_DIR "$HOME/.cache/keychain"
 
 if status --is-interactive
+  if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
+  end
 end
 
 begin
