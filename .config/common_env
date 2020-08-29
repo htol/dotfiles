@@ -8,6 +8,7 @@ export HISTFILE="$ZDOTDIR/.zsh_history"
 export PYENV_ROOT="$HOME/.local/pyenv"
 export POETRY_HOME="$HOME/.local/poetry"
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
+export KEYCHAIN_DIR="$HOME/.cache/keychain"
 
 export GOPATH="$HOME/go"
 export GO111MODULE=on
