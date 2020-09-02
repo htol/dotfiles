@@ -1,4 +1,10 @@
 # bootstrap
+From script on github
+```
+curl -fsSL https://raw.githubusercontent.com/htol/dotfiles/master/.local/bin/deploy_yadm.sh | bash
+```
+
+Manual
 
 ```
 git clone https://github.com/TheLocehiliosan/yadm.git ~/.local/yadm-project
