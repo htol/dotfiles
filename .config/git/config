@@ -8,7 +8,7 @@
   co = checkout
   st = status
   br = branch
-  ci = commit
+  ci = commit -m
   lp = log --oneline
   last = log -1 HEAD --
   poh = push origin head
