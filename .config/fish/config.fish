@@ -27,3 +27,5 @@ fnm env --shell=fish | source
 if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
      export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 end
+
+alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power status"

@@ -1,5 +1,7 @@
 ### Config for using vagrant with virtual box from WSL
-# export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+export GEM_HOME="$HOME/.local/gem" # TODO: work very strange. need further investigation
+export VAGRANT_HOME="$HOME/.local/vagrant.d"
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 # export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
 
 export ZDOTDIR="$HOME/.config/zsh"
