@@ -66,22 +66,12 @@ if [ "$system_type" = "Linux" ]; then
   #   git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
   # fi
 
-  # installing fisher
+  # installing fisher and plugins
   if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
-      echo "== Installing fisher"
+      echo "== Installing fisher and plugins"
       curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-  fi
-
-  # installing fish-gruvbox
-  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/theme_gruvbox.fish" ]; then
-      echo "== Installing fish-gruvbox"
-      fish -c "fisher add jomik/fish-gruvbox"
-  fi
-
-  # installing bax
-  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/bax.fish" ]; then
-      echo "== Installing bax"
-      fish -c "fisher add jorgebucaran/bax.fish"
+      # installing plugins
+      fisher
   fi
 
   echo "== Creating directories for Vim"
