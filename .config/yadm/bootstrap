@@ -71,7 +71,7 @@ if [ "$system_type" = "Linux" ]; then
       echo "== Installing fisher and plugins"
       curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
       # installing plugins
-      fisher
+      fish -c fisher
   fi
 
   echo "== Creating directories for Vim"
