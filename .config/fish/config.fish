@@ -1,18 +1,16 @@
-if functions -q theme_gruvbox
-  theme_gruvbox dark soft
-end
-
+cd
 
 . ~/.config/common_env
 
-cd
-
-set KEYCHAIN_DIR "$HOME/.cache/keychain"
+if functions -q theme_gruvbox
+  theme_gruvbox dark soft
+end
 
 if status --is-interactive
   if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
   end
+  set CDPATH . ~/repos ~/go/src ~/winrepos
 end
 
 begin
@@ -28,4 +26,5 @@ if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
      export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 end
 
-alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power status"
+alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power on"
+

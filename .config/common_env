@@ -13,8 +13,9 @@ export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 export KEYCHAIN_DIR="$HOME/.cache/keychain"
 
 export GOPATH="$HOME/go"
+export GOROOT="/usr/lib/go-1.15"
 export GO111MODULE=on
 
 export FNM_DIR="$HOME/.local/fnm"
 
-export PATH="$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$FNM_DIR:$PATH"
+export PATH="$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$GOROOT/bin:$FNM_DIR:$PATH"
