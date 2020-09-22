@@ -21,17 +21,6 @@
                     }
                 }
             }
-        },
-
-        "golang": {
-            "trace.server":"verbose",
-            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["go"],
-            "disableDynamicRegister":true,
-            "coc.preferences.colorSupport": false,
-            "initializationOptions": {
-                "usePlaceholders": true
-            }
-      }
+        }
     }
 }

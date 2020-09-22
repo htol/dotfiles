@@ -26,11 +26,7 @@ nnoremap <F5> :w<CR>:!python %<CR>
 
 set runtimepath+=~/.local/vim
 
-set autoindent
-"set smartident
-set expandtab						" replace <Tab> with spaces
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent "smartident
 
 set nu
 set nowrap
