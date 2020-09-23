@@ -22,6 +22,10 @@ end
 
 fnm env --shell=fish | source
 
+if test -f ~/.local/pyenv/bin/pyenv
+  pyenv init - | source
+end
+
 if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
      export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 end
