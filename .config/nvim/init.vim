@@ -105,3 +105,4 @@ endif
 
 
 set relativenumber
+set termguicolors
