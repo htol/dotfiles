@@ -1,8 +1,4 @@
-nnoremap <Space> <Nop>
-let mapleader = "\<Space>"
-
 set t_Co=256
-
 
 if &diff
   set relativenumber
@@ -84,9 +80,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'morhetz/gruvbox'
 call plug#end()
 
-set bg=dark
-let g:gruvbox_contrast_dark = "soft"
+set background=dark
+" let g:gruvbox_contrast_dark = "soft"
 colorscheme gruvbox
+
+nnoremap <SPACE> <Nop>
+let mapleader =  " "
+nnoremap <Leader>W :w !sudo tee % > /dev/null
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+
+vnoremap <leader>p "_dP
+"vnoremap J :m '>+1<CR>gv=gv
+"vnoremap K :m '<-2<CR>gv=gv
 
 " if executable('rg')
 "     let g:rg_derive_root='true'
