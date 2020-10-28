@@ -87,7 +87,9 @@ colorscheme gruvbox
 nnoremap <SPACE> <Nop>
 let mapleader =  " "
 nnoremap <Leader>W :w !sudo tee % > /dev/null
+nnoremap <Leader>w :w
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
 
 vnoremap <leader>p "_dP
 "vnoremap J :m '>+1<CR>gv=gv
