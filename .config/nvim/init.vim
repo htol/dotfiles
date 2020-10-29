@@ -25,6 +25,7 @@ set runtimepath+=~/.local/vim
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent "smartident
 
 set nu
+set relativenumber
 set nowrap
 
 " set noswapfile
@@ -77,6 +78,11 @@ set tabline=%!Tabline()
 call plug#begin('~/.config/nvim/plugged')
 " Plug 'mbbill/undotree'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
+
   Plug 'morhetz/gruvbox'
 call plug#end()
 
@@ -110,6 +116,4 @@ if !has("clipboard") && executable("clip.exe")
     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
 endif
 
-
-set relativenumber
 set termguicolors
