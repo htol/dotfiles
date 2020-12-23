@@ -2,23 +2,26 @@ cd
 
 . ~/.config/common_env
 
-if functions -q theme_gruvbox
-  theme_gruvbox dark soft
-end
 
 if status --is-interactive
   if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
   end
   set CDPATH . ~/repos ~/go/src ~/winrepos
-end
 
-begin
+  if functions -q theme_gruvbox
+    theme_gruvbox dark soft
+  end
+
+  begin
     set -l HOSTNAME (hostname)
     if test -f $KEYCHAIN_DIR/$HOSTNAME-fish
         source $KEYCHAIN_DIR/$HOSTNAME-fish
     end
+  end
+
 end
+
 
 fnm env --shell=fish | source
 
