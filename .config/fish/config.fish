@@ -1,17 +1,16 @@
-cd
+if status --is-interactive
 
 . ~/.config/common_env
 
+  if functions -q theme_gruvbox
+    theme_gruvbox dark soft
+  end
 
-if status --is-interactive
   if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
   end
   set CDPATH . ~/repos ~/go/src ~/winrepos
 
-  if functions -q theme_gruvbox
-    theme_gruvbox dark soft
-  end
 
   begin
     set -l HOSTNAME (hostname)
@@ -19,9 +18,6 @@ if status --is-interactive
         source $KEYCHAIN_DIR/$HOSTNAME-fish
     end
   end
-
-end
-
 
 fnm env --shell=fish | source
 
@@ -34,4 +30,4 @@ if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
 end
 
 alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power on"
-
+end
