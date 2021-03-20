@@ -74,16 +74,25 @@ if [ "$system_type" = "Linux" ]; then
       fish -c fisher
   fi
 
+  echo "== Getting nightly neovim build"
+  mkdir -p ~/.local/nvim/
+  cd ~/.local/nvim
+  curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract
+  nvim='~/.local/nvim/squashfs-root/AppRun'
+
   echo "== Creating directories for Vim"
   mkdir -p ~/.config/nvim/vim_undodir
 
-  # Download vim-plug and installing plugins
+  echo "== Getting vim-plug and installing plugins"
   if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
     echo "== Downloading vim-plug and installing plugins..."
     curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    nvim +PlugInstall +qall
-    nvim +'CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql' +qall
+    $nvim +PlugInstall +qall
+    # moving to neovim lsp
+    # $nvim +'CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql' +qall
   fi
 fi # Linux
 

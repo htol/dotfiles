@@ -84,12 +84,24 @@ set tabline=%!Tabline()
 
 
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'mbbill/undotree'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " LSP
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'tjdevries/nlua.nvim'
+  Plug 'tjdevries/lsp_extensions.nvim'
+
+  " telescope
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+  " THE BEST color schema
   Plug 'gruvbox-community/gruvbox'
+
+  Plug 'mbbill/undotree'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tweekmonster/gofmt.vim'
 call plug#end()
 
 set background=dark
