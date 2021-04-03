@@ -31,7 +31,7 @@ required for CoC
 nvm install --lts node
 ```
 
-# CoC plugins
+# CoC plugins (depricated. moved to nvim-lsp)
 From command line
 ```
 nvim +PlugInstall +qall
@@ -41,6 +41,16 @@ If you are inside vim
 ```
 :PlugInstall
 :CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql
+```
+
+# For nvim lsp
+All supported lsps
+```
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+npm install -g vls # vue.js
+npm install -g yaml-language-server
+npm install -g vscode-json-languageserver
+npm install -g pyright
 ```
 
 # golang

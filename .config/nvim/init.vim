@@ -96,13 +96,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+  " Neovim Tree shitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/playground'
+
   " THE BEST color schema
   Plug 'gruvbox-community/gruvbox'
 
   Plug 'mbbill/undotree'
   Plug 'tpope/vim-fugitive'
-  Plug 'tweekmonster/gofmt.vim'
+"  Plug 'tweekmonster/gofmt.vim'
 call plug#end()
+
+lua require("htol")
+lua require'nvim-treesitter.configs'.setup { ensure_installed = {"go", "python", "c", "cpp", "bash", "html", "javascript", "json", "yaml", "lua", "vue"},  highlight = { enable = true }}
 
 set background=dark
 " let g:gruvbox_contrast_dark = "soft"
