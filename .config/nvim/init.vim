@@ -18,7 +18,7 @@ syntax on
 " go to next/previous changes in diff and center the line on screen
 nnoremap ]c ]czz
 nnoremap [c [czz
-nnoremap <F5> :w<CR>:!python %<CR>
+nnoremap <F5> :w<CR>:make<CR>
 
 set runtimepath+=~/.local/vim
 

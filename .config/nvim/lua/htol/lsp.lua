@@ -8,7 +8,7 @@ require'lspconfig'.clangd.setup {
 
 require'lspconfig'.pyls.setup{ on_attach=on_attach }
 require'lspconfig'.gopls.setup{
- on_attach=on_attach,
+    on_attach=on_attach,
     cmd = {"gopls", "serve"},
     settings = {
       gopls = {
