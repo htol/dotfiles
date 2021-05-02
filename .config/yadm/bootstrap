@@ -31,8 +31,8 @@ if [ "$system_type" = "Linux" ]; then
     export PATH=$FNM_DIR:$PATH
     curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- -s -d ~/.local/fnm
     eval `fnm env --shell=bash`
-    fnm install latest-v12.x
-    fnm use latest-v12.x
+    fnm install v14.16.1
+    fnm use v14.16.1
   fi
 
   # installing pyenv
