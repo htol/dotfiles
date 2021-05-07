@@ -72,7 +72,7 @@ pip install -r ~/.local/ansible/requirements.txt
 ```
 
 
-# for macosx soft
+# macosx soft
 ```
 brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtualbox virtualbox-extension-pack vagrant vlc dash
 ```
