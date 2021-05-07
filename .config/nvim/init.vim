@@ -149,3 +149,9 @@ if !has("clipboard") && executable("clip.exe")
 endif
 
 set termguicolors
+
+" disable unused providers
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_python_provider = 0
+let g:python3_host_prog = '/home/tol/.local/pyenv/versions/neovim3/bin/python'
