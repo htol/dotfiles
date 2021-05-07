@@ -38,7 +38,7 @@ npm install -g pyright
 # golang
 ```
 sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt install golang-go
+sudo apt install golang-1.15-go
 ```
 
 # pyenv
