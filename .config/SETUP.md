@@ -53,8 +53,8 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 
 Install python by pyenv
 ```
-pyenv install 3.7.3
-pyenv global 3.7.3
+pyenv install 3.8.9
+pyenv global 3.8.9
 ```
 
 # poetry
