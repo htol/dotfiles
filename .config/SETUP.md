@@ -1,3 +1,7 @@
+# TODO:
+Move all this staff to bootstrap
+Make components updatable
+
 # Hello
 Short notes for enviroment setup.
 
