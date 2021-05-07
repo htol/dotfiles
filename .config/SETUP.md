@@ -1,17 +1,6 @@
 # Hello
 Short notes for enviroment setup.
 
-# zsh
-
-```
-brew: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install golang mtr mc wget neovim tmux htop the_silver_searcher ripgrep
-```
-oh-my-zsh manual install
-```
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.local/oh-my-zsh
-```
-
 # latest nvim for ubuntu before 20.04
 ```
 sudo apt-get install software-properties-common
@@ -29,18 +18,6 @@ npm install -g neovim
 required for CoC
 ```
 nvm install --lts node
-```
-
-# CoC plugins (depricated. moved to nvim-lsp)
-From command line
-```
-nvim +PlugInstall +qall
-nvim +'CocInstall -sync coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql' +qall
-```
-If you are inside vim
-```
-:PlugInstall
-:CocInstall coc-tsserver coc-json coc-html coc-css coc-go coc-python coc-snippets coc-yaml coc-vetur coc-sql
 ```
 
 # For nvim lsp
@@ -95,20 +72,12 @@ pip install -r ~/.local/ansible/requirements.txt
 ```
 
 
-telegram
-iterm2
-vscode
-OneNote
-Libre Office
-https://www.wireshark.org
-VLC
-dash # API browser
-
+# for macosx soft
 ```
-brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtualbox virtualbox-extension-pack vagrant vlc
+brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtualbox virtualbox-extension-pack vagrant vlc dash
 ```
 
-# macosx
+# macosx system settings
 Check bootstrap! There is already a banch of setting to configure macosx. Here is only often used.
 
 fonts:
