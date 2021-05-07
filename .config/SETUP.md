@@ -13,11 +13,16 @@ adding providers
 python3 -m pip install --user --upgrade pynvim
 npm install -g neovim
 ```
-
-# install latest node.js through nvm
-required for CoC
+or if you have pyenv with virtualenv plugin
 ```
-nvm install --lts node
+pyenv virtualenv 3.8.9 neovim3
+pyenv activate neovim3
+pip install neovim
+pyenv deactivate
+```
+in .vimrc/init.vim
+```
+let g:python3_host_prog = '/home/YOUR_USER_NAME/.local/pyenv/versions/neovim3/bin/python'
 ```
 
 # For nvim lsp
