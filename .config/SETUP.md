@@ -37,6 +37,7 @@ npm install -g vls # vue.js
 npm install -g yaml-language-server
 npm install -g vscode-json-languageserver
 npm install -g pyright
+npm install -g typescript typescript-language-server
 ```
 
 # golang
