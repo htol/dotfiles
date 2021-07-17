@@ -6,7 +6,6 @@ require'lspconfig'.clangd.setup {
     root_dir = function() return vim.loop.cwd() end
 }
 
-require'lspconfig'.pyls.setup{ on_attach=on_attach }
 require'lspconfig'.gopls.setup{
     on_attach=on_attach,
     cmd = {"gopls", "serve"},
@@ -20,12 +19,13 @@ require'lspconfig'.gopls.setup{
     },
 }
 
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{ on_attach=on_attach }
 
-require'lspconfig'.vuels.setup{}
-require'lspconfig'.yamlls.setup{}
+require'lspconfig'.vuels.setup{ on_attach=on_attach }
+require'lspconfig'.yamlls.setup{ on_attach=on_attach }
 
 require'lspconfig'.jsonls.setup {
+    on_attach=on_attach,
     commands = {
       Format = {
         function()
