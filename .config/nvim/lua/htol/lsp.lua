@@ -1,30 +1,38 @@
-local on_attach = require'completion'.on_attach
-require'lspconfig'.tsserver.setup{ on_attach=on_attach }
+--local on_attach = require'completion'.on_attach
+local lsp = require('lspconfig')
 
-require'lspconfig'.clangd.setup {
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lsp.tsserver.setup{ on_attach=on_attach }
+
+lsp.clangd.setup {
     on_attach = on_attach,
     root_dir = function() return vim.loop.cwd() end
 }
 
-require'lspconfig'.gopls.setup{
+lsp.gopls.setup{
     on_attach=on_attach,
+    capabilities=capabilities,
     cmd = {"gopls", "serve"},
     settings = {
       gopls = {
+        experimentalPostfixCompletions = true,
         analyses = {
           unusedparams = true,
+          shadow = true,
         },
         staticcheck = true,
       },
     },
 }
 
-require'lspconfig'.pyright.setup{ on_attach=on_attach }
+lsp.pyright.setup{ on_attach=on_attach }
 
-require'lspconfig'.vuels.setup{ on_attach=on_attach }
-require'lspconfig'.yamlls.setup{ on_attach=on_attach }
+lsp.vuels.setup{ on_attach=on_attach }
+lsp.yamlls.setup{ on_attach=on_attach }
 
-require'lspconfig'.jsonls.setup {
+lsp.jsonls.setup {
     on_attach=on_attach,
     commands = {
       Format = {
@@ -34,3 +42,5 @@ require'lspconfig'.jsonls.setup {
       }
     }
 }
+
+--vim.lsp.set_log_level("debug")

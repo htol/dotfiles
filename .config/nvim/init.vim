@@ -86,7 +86,8 @@ set tabline=%!Tabline()
 call plug#begin('~/.config/nvim/plugged')
   " LSP
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
+  "Plug 'nvim-lua/completion-nvim'
+  Plug 'hrsh7th/nvim-compe'
   Plug 'tjdevries/nlua.nvim'
   Plug 'tjdevries/lsp_extensions.nvim'
 
