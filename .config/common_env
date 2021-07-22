@@ -18,4 +18,8 @@ export GO111MODULE=on
 
 export FNM_DIR="$HOME/.local/fnm"
 
+export SDKMAN_DIR="$HOME/.local/sdkman"
+
+export GRADLE_USER_HOME="$HOME/.local/gradle"
+
 export PATH="$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$GOROOT/bin:$FNM_DIR:$PATH"

@@ -43,4 +43,8 @@ lsp.jsonls.setup {
     }
 }
 
+lsp.jdtls.setup{
+    cmd = {"jdtls.sh"}
+}
+
 --vim.lsp.set_log_level("debug")

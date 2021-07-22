@@ -1,6 +1,6 @@
 if status --is-interactive
 
-. ~/.config/common_env
+  . ~/.config/common_env
 
   if functions -q theme_gruvbox
     theme_gruvbox dark soft
