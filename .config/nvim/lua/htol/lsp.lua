@@ -1,4 +1,6 @@
 --local on_attach = require'completion'.on_attach
+local GRADLE_USER_HOME = os.getenv('GRADLE_USER_HOME')
+
 local lsp = require('lspconfig')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -32,7 +34,7 @@ lsp.pyright.setup{ on_attach=on_attach }
 lsp.vuels.setup{ on_attach=on_attach }
 lsp.yamlls.setup{ on_attach=on_attach }
 
-lsp.jsonls.setup {
+lsp.jsonls.setup{
     on_attach=on_attach,
     commands = {
       Format = {
@@ -44,7 +46,25 @@ lsp.jsonls.setup {
 }
 
 lsp.jdtls.setup{
-    cmd = {"jdtls.sh"}
+    cmd = {"jdtls.sh"},
+    settings = {
+        java = {
+            signatureHelp = { enabled = true },
+            sources = {
+                organizeImports = {
+                    starThreshold = 9999,
+                    staticStarThreshold = 9999,
+                },
+            },
+--            import = {
+--                gradle = {
+--                    user = {
+--                        home = GRADLE_USER_HOME
+--                    }
+--                }
+--            }
+        }
+    },
 }
 
 --vim.lsp.set_log_level("debug")
