@@ -48,6 +48,8 @@ set shortmess+=c
 
 set mouse=a
 
+set splitbelow
+set splitright
 
 if has("autocmd")
   filetype plugin indent on
