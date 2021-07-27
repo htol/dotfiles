@@ -1,5 +1,5 @@
--- TODO: dont need with compe???
---local on_attach = require'completion'.on_attach
+local function on_attach()
+end
 
 local lsp = require('lspconfig')
 

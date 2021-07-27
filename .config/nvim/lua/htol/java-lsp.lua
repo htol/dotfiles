@@ -1,12 +1,17 @@
 --local on_attach = require'completion'.on_attach
 local XDG_CONFIG_HOME = os.getenv('XDG_CONFIG_HOME')
 
+-- TODO: require from lsp.lua?
+local function on_attach()
+end
+
 local info = debug.getinfo(1,'S');
 print(info.source);
 
 local lsp = require('lspconfig')
 
 lsp.jdtls.setup{
+    on_attach=on_attach,
     cmd = {"jdtls.sh"},
     settings = {
         java = {
