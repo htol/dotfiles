@@ -5,9 +5,6 @@ local XDG_CONFIG_HOME = os.getenv('XDG_CONFIG_HOME')
 local function on_attach()
 end
 
-local info = debug.getinfo(1,'S');
-print(info.source);
-
 local lsp = require('lspconfig')
 
 lsp.jdtls.setup{

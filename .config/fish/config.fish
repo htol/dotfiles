@@ -32,5 +32,5 @@ if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
 end
 
 alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power on"
-alias nvim "~/.local/nvim/squashfs-root/AppRun"
+alias nvim "~/.local/nvim/nvim-linux64/bin/nvim"
 end

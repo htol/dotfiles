@@ -75,7 +75,7 @@ if [ "$system_type" = "Linux" ]; then
       fish -c fisher
   fi
 
-  echo "== Getting nightly neovim build"
+  echo "== Getting neovim build"
   mkdir -p ~/.local/nvim/
   cd ~/.local/nvim
   #curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
