@@ -6,19 +6,7 @@ else
 "   setup for non-diff mode
 endif
 
-"let s:portable = expand('<sfile>:p:h')
-"exe "source " . s:portable . '/colors_init.vim'
-
-"set list
-"set listchars=tab:→\ ,nbsp:␣,trail:•,precedes:«,extends:»
-" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-
 syntax on
-
-" go to next/previous changes in diff and center the line on screen
-nnoremap ]c ]czz
-nnoremap [c [czz
-nnoremap <F5> :w<CR>:make<CR>
 
 set runtimepath+=~/.local/vim
 
@@ -134,6 +122,40 @@ nnoremap <Leader>b :ls<cr>:b<Space>
 vnoremap <leader>p "_dP
 "vnoremap J :m '>+1<CR>gv=gv
 "vnoremap K :m '<-2<CR>gv=gv
+
+" go to next/previous changes in diff and center the line on screen
+nnoremap ]c ]czz
+nnoremap [c [czz
+nnoremap <F5> :w<CR>:make<CR>
+
+" more centered views
+" zv - open folds
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+nnoremap Y y$
+
+" Undo breakpoints in insert mode
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap ( (<c-g>u
+inoremap ) )<c-g>u
+inoremap = =<c-g>u
+
+" Jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Moving text. Line or selection
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> :m .+1<CR>==
+inoremap <C-k> :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
 
 " if executable('rg')
 "     let g:rg_derive_root='true'
