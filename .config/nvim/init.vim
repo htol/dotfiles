@@ -88,7 +88,6 @@ set tabline=%!Tabline()
 call plug#begin('~/.config/nvim/plugged')
   " LSP
   Plug 'neovim/nvim-lspconfig'
-  "Plug 'nvim-lua/completion-nvim'
   Plug 'hrsh7th/nvim-compe'
   Plug 'tjdevries/nlua.nvim'
   Plug 'tjdevries/lsp_extensions.nvim'
@@ -112,7 +111,6 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 lua require("htol")
-lua require'nvim-treesitter.configs'.setup { ensure_installed = {"go", "python", "c", "cpp", "bash", "html", "javascript", "json", "yaml", "lua", "vue"},  highlight = { enable = true }}
 
 set background=dark
 " let g:gruvbox_contrast_dark = "soft"
@@ -125,7 +123,8 @@ nnoremap <SPACE> <Nop>
 let mapleader =  " "
 
 nnoremap <Leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
-nnoremap <leader>ff :lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true})<cr>
+nnoremap <leader>fr :lua require('htol.telescope').search_dotfiles()<CR>
 
 nnoremap <Leader>W :w !sudo tee % > /dev/null
 nnoremap <Leader>w :w
