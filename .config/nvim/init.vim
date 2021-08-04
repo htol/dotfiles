@@ -8,6 +8,11 @@ endif
 
 syntax on
 
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+setlocal spell spelllang=ru_yo,en_us
+
 set runtimepath+=~/.local/vim
 
 set exrc
@@ -111,8 +116,11 @@ nnoremap <SPACE> <Nop>
 let mapleader =  " "
 
 nnoremap <Leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
-nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true})<cr>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git'}})<cr>
 nnoremap <leader>fr :lua require('htol.telescope').search_dotfiles()<CR>
+nnoremap <leader>fg :lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb :lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh :lua require('telescope.builtin').help_tags()<cr>
 
 nnoremap <Leader>W :w !sudo tee % > /dev/null
 nnoremap <Leader>w :w
@@ -179,3 +187,9 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_python_provider = 0
 let g:python3_host_prog = '/home/tol/.local/pyenv/versions/neovim3/bin/python'
+
+" switch keyboard layouts by C-F instead of C-^
+cmap <silent> <C-f> <C-^>
+nmap <silent> <C-f> <C-^>
+imap <silent> <C-f> <C-^>
+vmap <silent> <C-f> <C-^>
