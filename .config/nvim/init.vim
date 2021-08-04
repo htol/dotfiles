@@ -11,7 +11,7 @@ syntax on
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
-setlocal spell spelllang=ru_yo,en_us
+" setlocal spell spelllang=ru_yo,en_us
 
 set runtimepath+=~/.local/vim
 
