@@ -7,8 +7,11 @@ export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 export ZDOTDIR="$HOME/.config/zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export HISTFILE="$ZDOTDIR/.zsh_history"
+
 export PYENV_ROOT="$HOME/.local/pyenv"
 export POETRY_HOME="$HOME/.local/poetry"
+export IPYTHONDIR="$HOME/.local/ipython"
+
 export NPM_CONFIG_USERCONFIG="$HOME/.config/npm/npmrc"
 export KEYCHAIN_DIR="$HOME/.cache/keychain"
 
