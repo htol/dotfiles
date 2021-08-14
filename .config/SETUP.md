@@ -32,7 +32,7 @@ let g:python3_host_prog = '/home/YOUR_USER_NAME/.local/pyenv/versions/neovim3/bi
 # For nvim lsp
 All supported lsps
 ```
-GO111MODULE=on go get golang.org/x/tools/gopls@latest
+GO111MODULE=on go get golang.org/x/tools/gopls@latest  # also for  gopls update
 npm install -g vls # vue.js
 npm install -g yaml-language-server
 npm install -g vscode-json-languageserver
