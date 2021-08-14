@@ -82,8 +82,8 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-compe'
-  Plug 'tjdevries/nlua.nvim'
-  Plug 'tjdevries/lsp_extensions.nvim'
+"  Plug 'tjdevries/nlua.nvim'
+"  Plug 'tjdevries/lsp_extensions.nvim'
 
   " telescope
   Plug 'nvim-lua/popup.nvim'
@@ -134,6 +134,7 @@ vnoremap <leader>p "_dP
 " go to next/previous changes in diff and center the line on screen
 nnoremap ]c ]czz
 nnoremap [c [czz
+nnoremap <F2> :Telescope<CR>
 nnoremap <F5> :w<CR>:make<CR>
 
 " more centered views
@@ -193,3 +194,9 @@ cmap <silent> <C-f> <C-^>
 nmap <silent> <C-f> <C-^>
 imap <silent> <C-f> <C-^>
 vmap <silent> <C-f> <C-^>
+
+
+augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup END

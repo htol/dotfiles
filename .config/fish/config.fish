@@ -6,8 +6,6 @@ if status --is-interactive
     theme_gruvbox dark soft
   end
 
-  cd
-
   if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
   end
