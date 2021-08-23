@@ -46,6 +46,11 @@ sudo add-apt-repository ppa:longsleep/golang-backports
 sudo apt install golang-1.15-go
 ```
 
+# rust
+```
+curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
+```
+
 # pyenv
 ```
 git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv

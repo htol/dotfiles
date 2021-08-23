@@ -23,6 +23,9 @@ export FNM_DIR="$HOME/.local/fnm"
 
 export SDKMAN_DIR="$HOME/.local/sdkman"
 
+export RUSTUP_HOME="$HOME/.local/rustup"
+export CARGO_HOME="$HOME/.local/cargo"
+
 #export GRADLE_USER_HOME="$HOME/.local/gradle"
 
-export PATH="$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$GOROOT/bin:$FNM_DIR:$PATH"
+export PATH="$CARGO_HOME/bin:$PYENV_ROOT/bin:$POETRY_HOME/bin:$HOME/.local/poetry/bin:$HOME/.local/bin:~/bin:$GOPATH/bin:$GOROOT/bin:$FNM_DIR:$PATH"
