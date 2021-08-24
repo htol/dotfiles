@@ -84,6 +84,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'hrsh7th/nvim-compe'
 "  Plug 'tjdevries/nlua.nvim'
 "  Plug 'tjdevries/lsp_extensions.nvim'
+  Plug 'mfussenegger/nvim-jdtls'
 
   " telescope
   Plug 'nvim-lua/popup.nvim'
@@ -99,6 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'gruvbox-community/gruvbox'
 
   Plug 'mbbill/undotree'
+  " Git
   Plug 'tpope/vim-fugitive'
 "  Plug 'tweekmonster/gofmt.vim'
 call plug#end()
@@ -200,3 +202,8 @@ augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
+
+augroup lsp
+    au!
+    au FileType java lua require('htol.java-lsp').start_jdt()
+augroup end

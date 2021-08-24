@@ -13,13 +13,14 @@ require'compe'.setup {
   documentation = true;
 
   source = {
-    buffer = true;
-    path = true;
-    spell = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = false;
-  };
+    buffer = true; -- { kind = "﬘", true }
+--    luasnip = { kind = "﬌", true },
+    path = true,
+    spell = true,
+    calc = true,
+    nvim_lsp = true,
+    nvim_lua = true,
+  },
 }
 
 -- Utility functions for compe and luasnip

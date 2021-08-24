@@ -1,7 +1,5 @@
 -- nnoremap <leader>vrc :lua require('htol.telescope').search_dotfiles()<CR>
 
-
-
 local M = {}
 
 -- TODO: get output from 'yadm list' to reduce number of files
