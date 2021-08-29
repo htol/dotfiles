@@ -19,3 +19,5 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
+
+alias luamake=/home/tol/repos/lua-language-server/3rd/luamake/luamake
