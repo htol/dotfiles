@@ -20,4 +20,4 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-alias luamake=/home/tol/repos/lua-language-server/3rd/luamake/luamake
+alias luamake=$HOME/repos/lua-language-server/3rd/luamake/luamake
