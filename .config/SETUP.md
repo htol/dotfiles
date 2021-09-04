@@ -51,6 +51,12 @@ sudo apt install golang-1.15-go
 curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
 ```
 
+# sdkman && gradle
+```
+curl -s "https://get.sdkman.io" | bash
+sdk install gradle
+```
+
 # pyenv
 ```
 git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
