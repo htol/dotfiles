@@ -43,7 +43,7 @@ npm install -g typescript typescript-language-server
 # golang
 ```
 sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt install golang-1.15-go
+sudo apt install golang-1.16
 ```
 
 # rust
