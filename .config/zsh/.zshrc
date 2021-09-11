@@ -51,3 +51,7 @@ if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; the
 fi
 
 cd
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.local/sdkman"
+[[ -s "$HOME/.local/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.local/sdkman/bin/sdkman-init.sh"

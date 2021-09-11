@@ -121,3 +121,7 @@ else
 fi
 
 [ -s "$FNM_DIR/fnm" ] && eval "$(fnm env --shell=bash)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.local/sdkman"
+[[ -s "$HOME/.local/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.local/sdkman/bin/sdkman-init.sh"
