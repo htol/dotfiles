@@ -7,6 +7,7 @@ local lsp = require('lspconfig')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
@@ -82,7 +83,7 @@ lsp.gopls.setup{
         staticcheck = true,
         usePlaceholders = true,
         --linksInHover = false,
-        codelenses = {
+        codelens = {
             generate = true,
             gc_details = true,
             regenerate_cgo = true,
@@ -94,13 +95,14 @@ lsp.gopls.setup{
     },
 }
 
-lsp.pyright.setup{ on_attach=on_attach }
+lsp.pyright.setup{ on_attach=on_attach, capabilities=capabilities, }
 
-lsp.vuels.setup{ on_attach=on_attach }
-lsp.yamlls.setup{ on_attach=on_attach }
+lsp.vuels.setup{ on_attach=on_attach, capabilities=capabilities, }
+lsp.yamlls.setup{ on_attach=on_attach, capabilities=capabilities, }
 
 lsp.jsonls.setup{
     on_attach=on_attach,
+    capabilities=capabilities,
     commands = {
       Format = {
         function()
@@ -119,6 +121,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
+  on_attach=on_attach,
+  capabilities=capabilities,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
