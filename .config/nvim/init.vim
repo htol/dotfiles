@@ -33,7 +33,7 @@ set scrolloff=8
 set colorcolumn=120
 set signcolumn=yes
 
-set cmdheight=2
+set cmdheight=1
 set updatetime=50       " default is 4000ms = 4s
 
 " don't pass messages to |ins-completion-menu|.
