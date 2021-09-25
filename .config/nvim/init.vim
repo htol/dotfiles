@@ -82,6 +82,7 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP
   Plug 'neovim/nvim-lspconfig'
 "  Plug 'hrsh7th/nvim-compe'
+  Plug 'onsails/lspkind-nvim'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-buffer'

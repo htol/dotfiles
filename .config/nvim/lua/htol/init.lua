@@ -1,3 +1,4 @@
+require("htol.lspkind")
 require("htol.cmp")
 --require("htol.compe")
 require("htol.lsp")
