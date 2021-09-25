@@ -1,4 +1,5 @@
-if status --is-interactive
+
+if status is-interactive
 
   . ~/.config/common_env
 
@@ -19,16 +20,17 @@ if status --is-interactive
     end
   end
 
-fnm env --shell=fish | source
+  fnm env --shell=fish | source
+  
+  status is-login; and pyenv init --path | source
+  if test -f ~/.local/pyenv/bin/pyenv
+    pyenv init - | source
+  end
+  
+  if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
+       export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  end
 
-if test -f ~/.local/pyenv/bin/pyenv
-  pyenv init - | source
-end
-
-if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]
-     export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-end
-
-alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power on"
-alias nvim "~/.local/nvim/nvim-linux64/bin/nvim"
+  alias serveron "ipmitool -H 192.168.55.3 -U ADMIN chassis power on"
+  alias nvim "~/.local/nvim/nvim-linux64/bin/nvim"
 end
