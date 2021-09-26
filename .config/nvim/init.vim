@@ -14,6 +14,8 @@ set imsearch=0
 " setlocal spell spelllang=ru_yo,en_us
 
 set runtimepath+=~/.local/vim
+set tags+=~/.config/nvim/tags
+set tags+=~/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags
 
 set exrc
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent
@@ -36,7 +38,7 @@ set signcolumn=yes
 set cmdheight=1
 set updatetime=50       " default is 4000ms = 4s
 
-" don't pass messages to |ins-completion-menu|.
+" don't pass messages to |ins-completion-menu|
 set shortmess+=c
 
 set mouse=a
@@ -107,6 +109,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " THE BEST color schema
   Plug 'gruvbox-community/gruvbox'
+  Plug 'ghifarit53/tokyonight-vim'
 
   Plug 'mbbill/undotree'
   " Git
@@ -121,6 +124,22 @@ set background=dark
 colorscheme gruvbox
 "highlight ColorColumn ctermbg=0 guibg=lightgrey
 highlight Normal guibg=none
+
+" TAG JUMPING:
+command! MakeTags !ctags -R .
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" FILE BROWSER:
+let g:netrw_banner = 0              " disable banner
+let g:netrw_browse_split = 4        " open in prior window
+let g:netrw_altv = 1                " open splits to the right
+let g:netrw_liststyle = 3           " tree view
+let g:netrw_list_hide = netrw_gitignore#Hide()
+let g:netrw_list_hide .= ',\(^\|\s\s)\zs\.\S\+'
+" check |netrw-browse-maps| for mappings
 
 " mode lhs rhs
 nnoremap <SPACE> <Nop>
