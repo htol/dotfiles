@@ -60,6 +60,7 @@ curl -LO https://download.eclipse.org/jdtls/milestones/1.4.0/jdt-language-server
 
 # sdkman && gradle
 ```
+sudo apt-install -y zip
 curl -s "https://get.sdkman.io" | bash
 sdk install gradle
 ```
