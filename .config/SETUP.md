@@ -51,6 +51,13 @@ sudo apt install golang-1.16
 curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
 ```
 
+# java. jdtls
+```
+mkdir -p ~/.local/jdt-ls
+cd ~/.local/jdt-ls
+curl -LO https://download.eclipse.org/jdtls/milestones/1.4.0/jdt-language-server-1.4.0-202109161824.tar.gz
+```
+
 # sdkman && gradle
 ```
 curl -s "https://get.sdkman.io" | bash
