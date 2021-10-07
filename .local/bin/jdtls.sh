@@ -2,7 +2,7 @@
 #
 # For fork with lspconfig
 #
-JDTL_DIR=$HOME/.local/jdt-ls-1.2.0
+JDTL_DIR=$HOME/.local/jdt-ls
 JAR=$JDTL_DIR/plugins/org.eclipse.equinox.launcher_*.jar
 export GRADLE_HOME=$HOME/.local/sdkman/candidates/gradle/current
 #export GRADLE_USER_HOME=$HOME/.local/gradle
