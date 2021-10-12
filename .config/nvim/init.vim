@@ -117,6 +117,8 @@ call plug#begin('~/.config/nvim/plugged')
 "  Plug 'tweekmonster/gofmt.vim'
 call plug#end()
 
+" loadding plugins with packer
+lua require('plugins')
 lua require("htol")
 
 set background=dark
