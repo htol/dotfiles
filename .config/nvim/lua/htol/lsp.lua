@@ -83,7 +83,7 @@ lsp.gopls.setup{
         staticcheck = true,
         usePlaceholders = true,
         --linksInHover = false,
-        codelens = {
+        codelenses = {
             generate = true,
             gc_details = true,
             regenerate_cgo = true,
