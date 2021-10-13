@@ -78,7 +78,7 @@ if [ "$system_type" = "Linux" ]; then
   echo "== Getting neovim build"
   mkdir -p ~/.local/nvim/
   cd ~/.local/nvim
-  curl -LO https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz
+  curl -LO https://github.com/neovim/neovim/releases/download/v0.5.0/nvim-linux64.tar.gz
   tar xvfz nvim-linux64.tar.gz
   nvim='~/.local/nvim/nvim-linux64/bin/nvim'
 
