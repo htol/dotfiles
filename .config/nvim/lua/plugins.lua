@@ -1,9 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
--- Only required if you have packer configured as `opt`
---vim.cmd [[packadd packer.nvim]]
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
---vim._update_package_paths()
-
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -16,6 +10,40 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  --  use 'hrsh7th/nvim-compe'
+  use 'onsails/lspkind-nvim'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-emoji'
+
+  --  use 'tjdevries/nlua.nvim'
+  --  use 'tjdevries/lsp_extensions.nvim'
+  use 'mfussenegger/nvim-jdtls'
+
+  -- telescope
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-fzy-native.nvim'
+
+  -- Neovim Tree shitter
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
+  use 'nvim-treesitter/playground'
+
+
+  use 'mbbill/undotree'
+  -- Git
+  use 'tpope/vim-fugitive'
+  --  use 'tweekmonster/gofmt.vim'
 
 
     -- Little know features:
@@ -30,5 +58,12 @@ return require('packer').startup(function()
         vim.g.startify_disable_at_vimenter = true
       end,
     }
+
+    -- 
+    -- Themes
+    -- 
+    use 'gruvbox-community/gruvbox'
+    use 'ful1e5/onedark.nvim'
+    use 'ghifarit53/tokyonight-vim'
 
 end)

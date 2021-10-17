@@ -1,4 +1,5 @@
 set t_Co=256
+set termguicolors
 
 if &diff
   set relativenumber
@@ -79,43 +80,6 @@ function! Tabline()
 endfunction
 set tabline=%!Tabline()
 
-
-call plug#begin('~/.config/nvim/plugged')
-  " LSP
-  Plug 'neovim/nvim-lspconfig'
-"  Plug 'hrsh7th/nvim-compe'
-  Plug 'onsails/lspkind-nvim'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-nvim-lua'
-  Plug 'hrsh7th/cmp-emoji'
-
-"  Plug 'tjdevries/nlua.nvim'
-"  Plug 'tjdevries/lsp_extensions.nvim'
-  Plug 'mfussenegger/nvim-jdtls'
-
-  " telescope
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-  " Neovim Tree shitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/playground'
-
-  " THE BEST color schema
-  Plug 'gruvbox-community/gruvbox'
-  Plug 'ghifarit53/tokyonight-vim'
-
-  Plug 'mbbill/undotree'
-  " Git
-  Plug 'tpope/vim-fugitive'
-"  Plug 'tweekmonster/gofmt.vim'
-call plug#end()
 
 " loadding plugins with packer
 lua require('plugins')
@@ -213,7 +177,6 @@ if !has("clipboard") && executable("clip.exe")
     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
 endif
 
-set termguicolors
 
 " disable unused providers
 let g:loaded_ruby_provider = 0
