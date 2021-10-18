@@ -80,7 +80,7 @@ if [ "$system_type" = "Linux" ]; then
   cd ~/.local/nvim
   curl -LO https://github.com/neovim/neovim/releases/download/v0.5.0/nvim-linux64.tar.gz
   tar xvfz nvim-linux64.tar.gz
-  nvim='~/.local/nvim/nvim-linux64/bin/nvim'
+  nvim="$HOME/.local/nvim/nvim-linux64/bin/nvim"
 
   echo "== Creating directories for Vim"
   mkdir -p ~/.config/nvim/vim_undodir
@@ -90,7 +90,7 @@ if [ "$system_type" = "Linux" ]; then
     echo "== Downloading packer and installing plugins..."
     git clone --depth 1 https://github.com/wbthomason/packer.nvim \
         "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim
-    $nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+    ${nvim} nvim --headless +'PackerSync' +"sleep 10" +qa
   fi
 fi # Linux
 
