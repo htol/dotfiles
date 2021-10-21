@@ -200,3 +200,5 @@ augroup lsp
     au!
     au FileType java lua require('htol.java-lsp').start_jdt()
 augroup end
+
+autocmd BufWritePre *.go :lua vim.lsp.buf.formatting_sync()
