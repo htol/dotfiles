@@ -4,6 +4,7 @@
 	bare = false
 	sharedrepository = 0600
 	worktree = /home/{{ yadm.user }}
+    sparseCheckout = true
 [advice]
 	detachedHead = false
 [receive]
