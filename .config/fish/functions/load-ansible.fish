@@ -10,7 +10,9 @@ function load-ansible
         python3 -m venv venv
         . {$AVENV}/bin/activate.fish
         echo "Installing requirements"
+        python3 -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install ansible-lint yamllint
     end
 
     if test -f ~/.local/ansible/hacking/env-setup.fish
