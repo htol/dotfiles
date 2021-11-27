@@ -145,4 +145,9 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
+require'lspconfig'.terraformls.setup {
+  on_attach=on_attach,
+  capabilities=capabilities,
+}
+
 --vim.lsp.set_log_level("debug")
