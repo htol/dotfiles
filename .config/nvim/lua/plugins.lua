@@ -65,5 +65,9 @@ return require('packer').startup(function()
     use 'gruvbox-community/gruvbox'
     use 'ful1e5/onedark.nvim'
     use 'ghifarit53/tokyonight-vim'
+    use {
+        'sonph/onehalf',
+        rtp = 'vim',
+    }
 
 end)
