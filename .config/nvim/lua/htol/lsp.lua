@@ -1,6 +1,11 @@
 local HOME = os.getenv('HOME')
 
 local function on_attach()
+  -- works with 0.7.0
+  --vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+  --vim.keymap.set("n", "dg", vim.lsp.buf.definition, {buffer=0})
+  --vim.keymap.set("n", "dt", vim.lsp.buf.type_definition, {buffer=0})
+  --vim.keymap.set("n", "di", vim.lsp.buf.implementation, {buffer=0})
 end
 
 local lsp = require('lspconfig')
