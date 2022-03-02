@@ -70,6 +70,12 @@ if [ "$system_type" = "Linux" ]; then
     # cd
   fi
 
+  # installing sdkman
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/sdkman" ]; then
+    echo "== Installing sdkman"
+    curl -s "https://get.sdkman.io" | bash
+  fi
+
   # installing fisher and plugins
   if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
       echo "== Installing fisher and plugins"
