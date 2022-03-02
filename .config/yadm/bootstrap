@@ -51,8 +51,11 @@ if [ "$system_type" = "Linux" ]; then
   # installing poetry
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ]; then
     echo "== Installing poetry"
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - --no-modify-path
-    . $HOME/.local/poetry/env
+    # Should use already defined POETRY_HOME as destination
+    curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
+    mkdir -p ~/.config/fish/completions/
+    poetry completions fish > ~/.config/fish/completions/poetry.fish
+    # sudo poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
   fi
 
   # installing ansible
@@ -64,7 +67,7 @@ if [ "$system_type" = "Linux" ]; then
     # python3 -m venv venv
     # . venv/bin/activate
     # pip install -r requirements.txt
-    cd
+    # cd
   fi
 
   # installing fisher and plugins
