@@ -100,17 +100,9 @@ if [ "$system_type" = "Linux" ]; then
     echo "== Downloading packer and installing plugins..."
     git clone --depth 1 https://github.com/wbthomason/packer.nvim \
         "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim
-    ${nvim} nvim --headless +'PackerSync' +"sleep 10" +qa
+    ${nvim} --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   fi
 fi # Linux
-
-# Install vim-plug plugins.
-# if command -v vim >/dev/null 2>&1; then
-#     echo "== Install Vim plugins"
-#     vim '+PackUpdate' '+qall'
-# fi
-
-# TODO: create directories for vim undo
 
 # TODO: move brew/macos/linux bootstrap here or in better place.
 
