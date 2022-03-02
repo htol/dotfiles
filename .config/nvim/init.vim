@@ -87,7 +87,11 @@ lua require("htol")
 
 set background=dark
 " let g:gruvbox_contrast_dark = "soft"
-colorscheme gruvbox
+try
+    colorscheme gruvbox
+catch /^Vim\%((\a\+)\)\=:E185/
+    " deal with it
+endtry
 "highlight ColorColumn ctermbg=0 guibg=lightgrey
 highlight Normal guibg=none
 

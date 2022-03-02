@@ -1,7 +1,37 @@
-require("htol.lspkind")
-require("htol.cmp")
---require("htol.compe")
-require("htol.lsp")
-require("htol.java-lsp")
-require("htol.telescope")
-require("htol.treesitter")
+ok, _ = pcall(require, 'lspkind')
+if ok then
+    require("htol.lspkind")
+else
+    print('=== Error: lspkind failed to load')
+end
+    
+
+if pcall(require, 'cmp') then
+    require("htol.cmp")
+else
+    print('=== Error: cmp failed to load')
+end
+
+if pcall(require, 'lspconfig') then
+    require("htol.lsp")
+else
+    print('=== Error: lsp failed to load')
+end
+
+if pcall(require, 'jdtls') then
+    require("htol.java-lsp")
+else
+    print('=== Error: jdtls failed to load')
+end
+
+if pcall(require, 'telescope') then
+    require("htol.telescope")
+else
+    print('=== Error: telescope failed to load')
+end
+
+if pcall(require, 'nvim-treesitter.configs') then
+    require("htol.treesitter")
+else
+    print('=== Error: treesitter failed to load')
+end
