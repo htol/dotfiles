@@ -40,11 +40,7 @@ if [ "$system_type" = "Linux" ]; then
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv" ]; then
     echo "== Installing pyenv"
     git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
-  fi
-
-  # installing pyenv virtualenv
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv/plugins/pyenv-virtualenv" ]; then
-    echo "== Installing pyenv virtualenv"
+    git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
     git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
   fi
 
