@@ -55,7 +55,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
 ```
 mkdir -p ~/.local/jdt-ls
 cd ~/.local/jdt-ls
-curl -LO https://download.eclipse.org/jdtls/milestones/1.4.0/jdt-language-server-1.4.0-202109161824.tar.gz
+curl -LO https://download.eclipse.org/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz
 ```
 
 # sdkman && gradle
