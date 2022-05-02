@@ -18,12 +18,6 @@ else
     print('=== Error: lsp failed to load')
 end
 
-if pcall(require, 'jdtls') then
-    require("htol.java-lsp")
-else
-    print('=== Error: jdtls failed to load')
-end
-
 if pcall(require, 'telescope') then
     require("htol.telescope")
 else
