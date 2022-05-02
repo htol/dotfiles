@@ -1,0 +1,31 @@
+---
+- name: Install ninja
+  become: true
+  package:
+    state: present
+    name:
+      - ninja-build
+
+- name: Clone lua-language-server
+  git:
+    repo: https://github.com/sumneko/lua-language-server
+    dest: ~/.local/lua-language-server
+    recursive: true
+
+- name: Make lua-language-server part1
+  command: ./compile/install.sh
+  args:
+    chdir: ~/.local/lua-language-server/3rd/luamake
+      #    creates: ~/.local/lua-language-server/3rd/luamake/bee.so
+
+- name: Make lua-language-server part2
+  command: ./3rd/luamake/luamake rebuild
+  args:
+    chdir: ~/.local/lua-language-server/
+    creates: ~/.local/bin/Linux/lua-language-server
+
+
+      #- name: Install luacheck
+      #  command: luarocks --local install luacheck
+      #  args:
+      #    creates: ~/.luarocks/bin/luacheck
