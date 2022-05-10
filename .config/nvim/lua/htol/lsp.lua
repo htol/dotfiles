@@ -19,7 +19,7 @@ local home = os.getenv('HOME')
 
 -- array of mappings to setup; {<capability_name>, <mode>, <lhs>, <rhs>}
 local key_mappings = {
-  {"documentFormattingProvider", "n", "gq", "<Cmd>lua vim.lsp.buf.format{async = true}<CR>"},
+  {"documentFormattingProvider", "n", "gq", "<Cmd>lua vim.lsp.buf.formatting{async = true}<CR>"},
   {"documentRangeFormattingProvider", "v", "gq", "<Esc><Cmd>lua vim.lsp.buf.range_formatting()<CR>"},
   {"referencesProvider", "n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>"},
   {"hoverProvider", "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>"},
