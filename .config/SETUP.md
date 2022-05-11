@@ -5,14 +5,13 @@ Make components updatable
 # Hello
 Short notes for enviroment setup.
 
-# latest nvim for ubuntu before 20.04
+some X related staff
 ```
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt-get update
-sudo apt-get install neovim
+sudo apt-get -y install rofi nitrogen kitty flameshot
+# TODO: manual build for
+# polybar picom alacritty
 ```
-adding providers
+adding providers for neovim
 ```
 python3 -m pip install --user --upgrade pynvim
 npm install -g neovim
