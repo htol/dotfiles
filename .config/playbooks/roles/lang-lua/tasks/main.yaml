@@ -11,14 +11,16 @@
     repo: https://github.com/sumneko/lua-language-server
     dest: ~/.local/lua-language-server
     recursive: true
+    depth: 1
+    update: true
 
-- name: Make lua-language-server part1
-  command: ./compile/install.sh
+- name: Building luamake
+  command: ninja -f ./compile/ninja/linux.ninja
   args:
     chdir: ~/.local/lua-language-server/3rd/luamake
-      #    creates: ~/.local/lua-language-server/3rd/luamake/bee.so
+    creates: build/linux/bin/luamake
 
-- name: Make lua-language-server part2
+- name: Building lua-language-server
   command: ./3rd/luamake/luamake rebuild
   args:
     chdir: ~/.local/lua-language-server/
