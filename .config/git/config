@@ -9,6 +9,7 @@
   st = status
   br = branch
   ci = commit -m
+  cia = commit -a -m
   lp = log --oneline
   last = log -1 HEAD --
   poh = push origin head
