@@ -1,0 +1,8 @@
+---
+- name: X1 Carbon copy Xorg configs
+  become: true
+  copy:
+    src: xorg.conf.d/
+    dest: /etc/X11/xorg.conf.d/
+  tags:
+    - x1-x
