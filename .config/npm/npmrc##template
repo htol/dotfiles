@@ -21,7 +21,11 @@
 ; browser=null
 ; ca=null
 ; cafile=undefined
+{% if yadm.os == "Darwin" %}
+cache=/Users/{{ yadm.user }}/.cache/npm
+{% else %}
 cache=/home/{{ yadm.user }}/.cache/npm
+{% endif %}
 ; cache-lock-stale=60000
 ; cache-lock-retries=10
 ; cache-lock-wait=10000
