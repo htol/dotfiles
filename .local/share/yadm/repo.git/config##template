@@ -3,7 +3,11 @@
 	filemode = true
 	bare = false
 	sharedrepository = 0600
-	worktree = /home/{{ yadm.user }}
+{% if yadm.os == "Darwin" %}
+     worktree = /Users/{{ yadm.user }}
+{% else %}
+    worktree = /home/{{ yadm.user }}
+{% endif %}
     sparseCheckout = true
 [advice]
 	detachedHead = false
