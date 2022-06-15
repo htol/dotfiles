@@ -34,10 +34,10 @@ local key_mappings = {
 
 local function on_attach(client, bufnr)
   -- works with 0.7.0
-  --vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-  --vim.keymap.set("n", "dg", vim.lsp.buf.definition, {buffer=0})
-  --vim.keymap.set("n", "dt", vim.lsp.buf.type_definition, {buffer=0})
-  --vim.keymap.set("n", "di", vim.lsp.buf.implementation, {buffer=0})
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer=0})
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
 
   --vim.api.nvim_buf_set_var(bufnr, "lsp_client_id", client.id)
   --vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -45,10 +45,8 @@ local function on_attach(client, bufnr)
 
   -- Probably redundunt option
   vim.api.nvim_command("setlocal signcolumn=yes")
+  vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.vim.lsp.tagfunc")
 
-  if client.server_capabilities.definitionProvider then
-    vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.vim.lsp.tagfunc")
-  end
 
   local opts = { silent = true; }
   for _, mappings in pairs(key_mappings) do
