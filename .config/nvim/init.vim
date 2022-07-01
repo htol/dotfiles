@@ -116,7 +116,7 @@ nnoremap <SPACE> <Nop>
 let mapleader =  " "
 
 nnoremap <Leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
-nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git'}})<cr>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git', '.venv', 'venv', 'node_modules'}})<cr>
 nnoremap <leader>fr :lua require('htol.telescope').search_dotfiles()<CR>
 nnoremap <leader>fg :lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb :lua require('telescope.builtin').buffers()<cr>
