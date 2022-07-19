@@ -107,16 +107,13 @@ fi # Linux or Darwin
 # TODO: move brew/macos/linux bootstrap here or in better place.
 
 if [ "$system_type" = "Darwin" ]; then
-    # iterm
-    defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$HOME/.config/iterm"
-    defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
+    PREF="$HOME/Library/Preferences"
 
 	###############################################################################
 	# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 	###############################################################################
     # Trackpad: enable tap to click for this user and for the login screen
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
     # Disable “natural” (Lion-style) scrolling
@@ -131,7 +128,18 @@ if [ "$system_type" = "Darwin" ]; then
 
 	# Show language menu in the top right corner of the boot screen
     sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+
+    # Shortcuts
+    defaults write -g NSUserKeyEquivalents -dict-add "Lock Screen" "@l"
+    #defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add NSGlobalDomain
 	
+    ###############################################################################
+    # iterm2                                                                      #
+    ###############################################################################
+    #defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$HOME/.config/iterm"
+    #defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
+    /usr/libexec/PlistBuddy -c 'set "New Bookmarks":0:"Scrollback Lines" 50000' $PREF/com.googlecode.iterm2.plist
+
 	###############################################################################
     # Finder                                                                      #
     ###############################################################################
