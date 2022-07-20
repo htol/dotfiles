@@ -4,7 +4,7 @@ set -e
 
 update_shell_env()
 {
-  . $HOME/.profile
+  . $HOME/.config/common_env
 }
 
 update_shell_env
@@ -68,7 +68,7 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   # installing ansible
   if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ]; then
     echo "== Installing ansible"
-    git clone https://github.com/ansible/ansible.git ~/.local/ansible
+    git clone --depth 1 https://github.com/ansible/ansible.git ~/.local/ansible
     # . ~/.local/ansible/hacking/env-setup
     # cd ~/.local/ansible
     # python3 -m venv venv
@@ -83,14 +83,6 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
     curl -s "https://get.sdkman.io" | bash
   fi
 
-  # installing fisher and plugins
-  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
-      echo "== Installing fisher and plugins"
-      curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-      # installing plugins
-      fish -c 'fisher update'
-  fi
-
   echo "== Creating directories for Vim"
   mkdir -p ~/.config/nvim/vim_undodir
 
@@ -102,6 +94,15 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
 # Let's install it manually for now
 #    ${nvim} -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   fi
+
+  # installing fisher and plugins
+  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
+      echo "== Installing fisher and plugins"
+      curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+      # installing plugins
+      fish -c 'fisher update'
+  fi
+
 fi # Linux or Darwin
 
 # TODO: move brew/macos/linux bootstrap here or in better place.
