@@ -33,10 +33,8 @@ return require('packer').startup(function()
   use 'nvim-telescope/telescope-fzy-native.nvim'
 
   -- Neovim Tree shitter
-  use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
-  }
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter-textobjects'}
   use 'nvim-treesitter/playground'
 
 
