@@ -60,9 +60,16 @@ return require('packer').startup(function()
     -- 
     -- Themes
     -- 
-    use 'gruvbox-community/gruvbox'
+    use {
+        'gruvbox-community/gruvbox',
+        config = function()
+            vim.cmd('colorscheme gruvbox')
+            --vim.opt.background='dark'
+            vim.cmd('highlight Normal guibg=none')
+        end
+    }
     use 'ful1e5/onedark.nvim'
-    use 'ghifarit53/tokyonight-vim'
+    use 'folke/tokyonight.nvim'
     use {
         'sonph/onehalf',
         rtp = 'vim',

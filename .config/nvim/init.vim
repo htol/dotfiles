@@ -1,51 +1,8 @@
-set t_Co=256
-set termguicolors
-
-if &diff
-  set relativenumber
-else
-"   setup for non-diff mode
-endif
-
-syntax on
-
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-" setlocal spell spelllang=ru_yo,en_us
-
-set runtimepath+=~/.local/vim
-set tags+=~/.config/nvim/tags
-set tags+=~/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags
-
-set exrc
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent
-set number relativenumber
-set nowrap              " do not wrap line of text
-set guicursor=
-set nohlsearch
-set hidden              " do not unload buffers, keep it in background
-set noerrorbells
-set noswapfile
-set nobackup
-set undodir=~/.config/nvim/vim_undodir
-set undofile
-set smartcase
-set incsearch
-set scrolloff=8
-set colorcolumn=120
-set signcolumn=yes
-
-set cmdheight=1
-set updatetime=50       " default is 4000ms = 4s
-
-" don't pass messages to |ins-completion-menu|
-set shortmess+=c
-
-set mouse=a
-
-set splitbelow
-set splitright
+" loadding plugins with packer
+lua require('options')
+lua require('keybindings')
+lua require('plugins')
+lua require('htol')
 
 if has("autocmd")
   filetype plugin indent on
@@ -81,20 +38,6 @@ endfunction
 set tabline=%!Tabline()
 
 
-" loadding plugins with packer
-lua require('plugins')
-lua require("htol")
-
-set background=dark
-" let g:gruvbox_contrast_dark = "soft"
-try
-    colorscheme gruvbox
-catch /^Vim\%((\a\+)\)\=:E185/
-    " deal with it
-endtry
-"highlight ColorColumn ctermbg=0 guibg=lightgrey
-highlight Normal guibg=none
-
 " TAG JUMPING:
 command! MakeTags !ctags -R .
 " NOW WE CAN:
@@ -102,18 +45,9 @@ command! MakeTags !ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 
-" FILE BROWSER:
-let g:netrw_banner = 0              " disable banner
-let g:netrw_browse_split = 4        " open in prior window
-let g:netrw_altv = 1                " open splits to the right
-let g:netrw_liststyle = 3           " tree view
-let g:netrw_list_hide = netrw_gitignore#Hide()
-let g:netrw_list_hide .= ',\(^\|\s\s)\zs\.\S\+'
-" check |netrw-browse-maps| for mappings
 
 " mode lhs rhs
 nnoremap <SPACE> <Nop>
-let mapleader =  " "
 
 nnoremap <Leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
 nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git', '.venv', 'venv', 'node_modules'}})<cr>
@@ -181,12 +115,6 @@ if !has("clipboard") && executable("clip.exe")
     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
 endif
 
-
-" disable unused providers
-let g:loaded_ruby_provider = 0
-let g:loaded_perl_provider = 0
-let g:loaded_python_provider = 0
-let g:python3_host_prog = '/home/tol/.local/pyenv/versions/neovim3/bin/python'
 
 " switch keyboard layouts by C-F instead of C-^
 cmap <silent> <C-f> <C-^>

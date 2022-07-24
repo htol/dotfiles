@@ -7,7 +7,11 @@ M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< VimRC >",
         cwd = "$HOME/.config/",
-        file_ignore_patterns = {'.git', '.venv', 'venv', 'node_modules', 'vim_undodir', 'repo.git', 'plugged'}
+        file_ignore_patterns = {
+            '.git', '.venv', 'venv',
+            'node_modules', 'vim_undodir', 'repo.git', 'plugged',
+            'google-chrome/',
+        }
     })
 end
 
