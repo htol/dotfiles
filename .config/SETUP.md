@@ -7,7 +7,7 @@ Short notes for enviroment setup.
 
 some X related staff
 ```
-sudo apt-get -y install rofi nitrogen kitty flameshot
+sudo apt-get -y install rofi nitrogen kitty flameshot kbdd
 # TODO: manual build for
 # polybar picom alacritty
 ```
