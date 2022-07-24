@@ -32,7 +32,10 @@ bindsym $mod+Mod1+l exec --no-startup-id i3lock -d
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:caps_toggle"
+exec --no-startup-id /usr/bin/kbdd
+#exec_always /usr/bin/kbdd
+#exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:caps_toggle"
+
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -40,6 +43,11 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym Print exec flameshot gui
+
+# Switch between windows (with rofi):
+bindsym mod1+Tab exec --no-startup-id rofi -show window -case-sensitive -bg 'white' -bc '#569BE4' -bw 2 -fg 'black' -hlbg '#569BE4' -hlfg 'white'  -font ubuntu\ 11 -opacity 90 -eh 1.5 -lines 10 -columns 1 -width 40 -location 0 -padding 5 #-auto-select
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
