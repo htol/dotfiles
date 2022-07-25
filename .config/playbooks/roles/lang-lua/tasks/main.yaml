@@ -5,6 +5,8 @@
     state: present
     name:
       - ninja-build
+  tags:
+    - lang-lua
 
 - name: Clone lua-language-server
   git:
@@ -13,21 +15,30 @@
     recursive: true
     depth: 1
     update: true
+  tags:
+    - lang-lua
+    - lang-lua-repo
 
 - name: Building luamake
   command: ninja -f ./compile/ninja/linux.ninja
   args:
     chdir: ~/.local/lua-language-server/3rd/luamake
     creates: build/linux/bin/luamake
+  tags:
+    - lang-lua
 
 - name: Building lua-language-server
   command: ./3rd/luamake/luamake rebuild
   args:
     chdir: ~/.local/lua-language-server/
     creates: ~/.local/bin/Linux/lua-language-server
+  tags:
+    - lang-lua
 
 
       #- name: Install luacheck
       #  command: luarocks --local install luacheck
       #  args:
       #    creates: ~/.luarocks/bin/luacheck
+      #  tags:
+      #    - lang-lua
