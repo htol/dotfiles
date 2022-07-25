@@ -8,6 +8,16 @@ case $- in
       *) return;;
 esac
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+if [ -S "$SSH_AUTH_SOCK" ] && [[ $SSH_AUTH_SOCK != *".ssh/ssh_auth_sock"* ]]; then
+    echo "updating auth sock"
+    ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -96,8 +106,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# TODO: move common alias to shell independend config
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -120,8 +128,10 @@ else
   echo "Keychain not installed"
 fi
 
-[ -s "$FNM_DIR/fnm" ] && eval "$(fnm env --shell=bash)"
+eval "$(fnm env --use-on-cd)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.local/sdkman"
 [[ -s "$HOME/.local/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.local/sdkman/bin/sdkman-init.sh"
+
+[[ -n $HOME ]] && [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases"
