@@ -10,8 +10,10 @@ esac
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
+
+[[ ! $COMMON_ENV_LOADED ]] &&  source $HOME/.config/common_env
 
 if [ -S "$SSH_AUTH_SOCK" ] && [[ $SSH_AUTH_SOCK != *".ssh/ssh_auth_sock"* ]]; then
     echo "updating auth sock"

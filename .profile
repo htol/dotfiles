@@ -8,9 +8,7 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-if [ -f "$HOME/.config/common_env" ]; then
-    source $HOME/.config/common_env
-fi
+[[ ! $COMMON_ENV_LOADED ]] &&  source $HOME/.config/common_env
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
