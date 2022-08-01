@@ -1,4 +1,7 @@
+local home = vim.fn.expand('~')
+
 vim.g.mapleader =  " "
+
 
 --vim.g.t_Co=256
 vim.opt.termguicolors = true
@@ -13,9 +16,8 @@ vim.opt.imsearch=0
 
 -- setlocal spell spelllang=ru_yo,en_us
 
-vim.opt.runtimepath = vim.opt.runtimepath + "~/.local/vim"
-vim.opt.tags = vim.opt.tags + "~/.config/nvim/tags"
-vim.opt.tags = vim.opt.tags + "~/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags"
+vim.opt.tags = vim.opt.tags + (home .. "/.config/nvim/tags")
+vim.opt.tags = vim.opt.tags + (home .. "/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags")
 
 vim.opt.exrc = true
 vim.opt.tabstop=4
@@ -31,7 +33,7 @@ vim.opt.hidden = true              -- do not unload buffers, keep it in backgrou
 vim.opt.errorbells = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir='~/.config/nvim/vim_undodir'
+vim.opt.undodir=(home .. '/.config/nvim/vim_undodir')
 vim.opt.undofile = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
@@ -64,4 +66,4 @@ vim.g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = '/home/tol/.local/pyenv/versions/neovim3/bin/python'
+vim.g.python3_host_prog = (home .. '/.local/pyenv/versions/neovim3/bin/python')
