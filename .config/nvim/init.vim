@@ -1,13 +1,12 @@
 " loadding plugins with packer
 lua require('options')
-lua require('keybindings')
 lua require('plugins')
 lua require('htol')
+lua require('keybindings')
 
 if has("autocmd")
   filetype plugin indent on
 endif
-
 
 function! Tabline()
   let s = ''
@@ -37,90 +36,12 @@ function! Tabline()
 endfunction
 set tabline=%!Tabline()
 
-
 " TAG JUMPING:
 command! MakeTags !ctags -R .
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
-
-
-" mode lhs rhs
-nnoremap <SPACE> <Nop>
-
-nnoremap <Leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
-nnoremap <leader>ff :lua require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git', '.venv', 'venv', 'node_modules'}})<cr>
-nnoremap <leader>fr :lua require('htol.telescope').search_dotfiles()<CR>
-nnoremap <leader>fg :lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb :lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh :lua require('telescope.builtin').help_tags()<cr>
-
-nnoremap <Leader>W :w !sudo tee % > /dev/null
-nnoremap <Leader>w :w
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<cr>
-nnoremap <Leader>b :ls<cr>:b<Space>
-
-vnoremap <leader>p "_dP
-"vnoremap J :m '>+1<CR>gv=gv
-"vnoremap K :m '<-2<CR>gv=gv
-
-" go to next/previous changes in diff and center the line on screen
-nnoremap ]c ]czz
-nnoremap [c [czz
-nnoremap <F2> :Telescope<CR>
-nnoremap <F5> :w<CR>:make<CR>
-
-" more centered views
-" zv - open folds
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
-
-nnoremap Y y$
-
-" Undo breakpoints in insert mode
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-inoremap ( (<c-g>u
-inoremap ) )<c-g>u
-inoremap = =<c-g>u
-
-" Jumplist mutations
-nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
-nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
-
-" Moving text. Line or selection
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> :m .+1<CR>==
-inoremap <C-k> :m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
-
-" if executable('rg')
-"     let g:rg_derive_root='true'
-" endif
-
-func! GetSelectedText()
-    normal gv"xy
-    let result = getreg("x")
-    return result
-endfunc
-
-if !has("clipboard") && executable("clip.exe")
-    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
-    noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
-endif
-
-
-" switch keyboard layouts by C-F instead of C-^
-cmap <silent> <C-f> <C-^>
-nmap <silent> <C-f> <C-^>
-imap <silent> <C-f> <C-^>
-vmap <silent> <C-f> <C-^>
 
 
 augroup YankHighlight
