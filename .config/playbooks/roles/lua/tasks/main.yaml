@@ -1,12 +1,23 @@
 ---
 - name: Install ninja
+  when: ansible_pkg_mgr != 'homebrew'
   become: true
   package:
     state: present
     name:
       - ninja-build
   tags:
-    - lang-lua
+    - lua
+
+- name: Install ninja (brew)
+  when: ansible_pkg_mgr == 'homebrew'
+  become: false
+  package:
+    state: present
+    name:
+      - ninja
+  tags:
+    - lua
 
 - name: Clone lua-language-server
   git:
@@ -16,16 +27,26 @@
     depth: 1
     update: true
   tags:
-    - lang-lua
-    - lang-lua-repo
+    - lua
+    - luarepo
 
-- name: Building luamake
+- name: Building luamake (Linux)
+  when: ansible_os_family == 'Debian'
   command: ninja -f ./compile/ninja/linux.ninja
   args:
     chdir: ~/.local/lua-language-server/3rd/luamake
     creates: build/linux/bin/luamake
   tags:
-    - lang-lua
+    - lua
+
+- name: Building luamake (Darwin)
+  when: ansible_os_family == 'Darwin'
+  command: ninja -f ./compile/ninja/macos.ninja
+  args:
+    chdir: ~/.local/lua-language-server/3rd/luamake
+    creates: build/macos/bin/luamake
+  tags:
+    - lua
 
 - name: Building lua-language-server
   command: ./3rd/luamake/luamake rebuild
@@ -33,7 +54,7 @@
     chdir: ~/.local/lua-language-server/
     creates: ~/.local/bin/Linux/lua-language-server
   tags:
-    - lang-lua
+    - lua
 
 
       #- name: Install luacheck
@@ -41,4 +62,4 @@
       #  args:
       #    creates: ~/.luarocks/bin/luacheck
       #  tags:
-      #    - lang-lua
+      #    - lua

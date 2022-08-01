@@ -2,5 +2,5 @@
 - hosts: localhost
   gather_facts: true
   roles:
-    - x1-X
-    - lang-lua
+    - x1
+    - lua
