@@ -86,15 +86,6 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   echo "== Creating directories for Vim"
   mkdir -p ~/.config/nvim/vim_undodir
 
-  echo "== Getting 'packer' the plugin/package manager for Neovim"
-  if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim ]; then
-    echo "== Downloading packer and installing plugins..."
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-        "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim
-# Let's install it manually for now
-#    ${nvim} -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  fi
-
   # installing fisher and plugins
   if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
       echo "== Installing fisher and plugins"
