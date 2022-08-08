@@ -13,36 +13,25 @@ sudo apt-get -y install rofi nitrogen kitty flameshot kbdd
 ```
 adding providers for neovim
 ```
-python3 -m pip install --user --upgrade pynvim
+pyenv virtualenv 3.x.x neovim3
+pyenv activate neovim3 && \
+pip install neovim && \
+pyenv deactivate && \
 npm install -g neovim
-```
-or if you have pyenv with virtualenv plugin
-```
-pyenv virtualenv 3.8.9 neovim3
-pyenv activate neovim3
-pip install neovim
-pyenv deactivate
-```
-in .vimrc/init.vim
-```
-let g:python3_host_prog = '/home/YOUR_USER_NAME/.local/pyenv/versions/neovim3/bin/python'
 ```
 
 # For nvim lsp
 All supported lsps
 ```
-GO111MODULE=on go get golang.org/x/tools/gopls@latest  # also for  gopls update
-npm install -g vls # vue.js
-npm install -g yaml-language-server
-npm install -g vscode-json-languageserver
-npm install -g pyright
-npm install -g typescript typescript-language-server
+go install golang.org/x/tools/gopls@latest  # also for  gopls update
+npm install -g pyright yaml-language-server vscode-json-languageserver
+npm install -g vls typescript typescript-language-server
 ```
 
 # golang
 ```
 sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt install golang-1.16
+sudo apt install golang-1.19
 ```
 
 # rust
