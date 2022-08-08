@@ -1,10 +1,8 @@
-ok, _ = pcall(require, 'lspkind')
-if ok then
+if pcall(require, 'lspkind') then
     require("htol.lspkind")
 else
     print('=== Error: lspkind failed to load')
 end
-    
 
 if pcall(require, 'cmp') then
     require("htol.cmp")
