@@ -3,7 +3,7 @@
 
 def main() -> int:
 
-    return o
+    return 0
 
 
 if __name__ == '__main__':
