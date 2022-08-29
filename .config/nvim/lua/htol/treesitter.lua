@@ -1,7 +1,9 @@
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
         "go", "python", "c", "cpp", "bash", "html", "javascript",
-        "json", "yaml", "lua", "vue", "java", "kotlin", "hcl"
+        "json", "yaml", "lua", "vue", "java", "kotlin", "hcl",
+        "sql",
+        "query"
     },
     highlight = { enable = true },
 
@@ -50,38 +52,13 @@ require'nvim-treesitter.configs'.setup {
     playground = {
         enable = true,
         disable = {},
-        updatetime = 25, 
-        persist_queries = false 
+        updatetime = 25,
+        persist_queries = false
+    },
+    query_linter = {
+        enable = true,
+        use_virtual_text = true,
+        lint_events = {"BufWrite", "CursorHold"},
     }
-}        
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+
+}

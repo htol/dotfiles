@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   --  use 'hrsh7th/nvim-compe'
   use 'onsails/lspkind-nvim'
+
+  -- autocomplete
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/cmp-buffer'
@@ -82,6 +84,9 @@ return require('packer').startup(function(use)
         'sonph/onehalf',
         rtp = 'vim',
     }
+
+    -- startup screen
+    -- use 'goolord/alpha-nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
