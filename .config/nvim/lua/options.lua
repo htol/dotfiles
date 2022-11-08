@@ -49,6 +49,15 @@ vim.opt.scrolloff=8
 vim.opt.colorcolumn='120'
 vim.opt.signcolumn = 'yes'
 
+-- vim.opt.listchars = {
+--     eol='↵',
+--     trail='~',
+--     tab='>-',
+--     nbsp='␣'
+-- }
+-- vim.opt.list = true
+vim.fn.matchadd('errorMsg', [[\s\+$]]) -- Highlight trailing whitespaces
+
 vim.opt.cmdheight=1
 vim.opt.updatetime=50       -- default is 4000ms = 4s
 

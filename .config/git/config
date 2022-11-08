@@ -21,3 +21,5 @@
   sapply = "!f() { git stash apply stash^{/$*}; }; f"
 [pull]
   ff = only
+[push]
+  default = current
