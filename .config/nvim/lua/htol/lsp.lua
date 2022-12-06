@@ -81,7 +81,7 @@ local lsp = require('lspconfig')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
@@ -102,14 +102,37 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-lsp.tsserver.setup{ on_attach=on_attach }
+lsp.tsserver.setup { on_attach=on_attach }
 
 lsp.clangd.setup {
     on_attach = on_attach,
     root_dir = function() return vim.loop.cwd() end
 }
 
-lsp.gopls.setup{
+lsp.rust_analyzer.setup {
+    on_attach=on_attach,
+    capabilities=capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+}
+
+lsp.gopls.setup {
     on_attach=on_attach,
     capabilities=capabilities,
     cmd = {"gopls", "serve"},
