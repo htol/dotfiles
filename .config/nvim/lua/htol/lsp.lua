@@ -58,8 +58,8 @@ local function on_attach(client, bufnr)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "crr", "<Cmd>lua vim.lsp.buf.rename(vim.fn.input('New Name: '))<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "i", "<c-n>", "<Cmd>lua require('lsp_compl').trigger_completion()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]w", "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[w", "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "]w", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "[w", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
   vim.cmd('augroup lsp_aucmds')
   vim.cmd(string.format('au! * <buffer=%d>', bufnr))
@@ -93,10 +93,12 @@ end
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
-    virtual_text = {
-      spacing = 2,
-      prefix = '~',
-    },
+    float = true,
+    --virtual_tex = {
+    --  spacing = 2,
+    --  prefix = '~',
+    --},
+    virtual_text = false,
     signs = true,
     update_in_insert = true,
   }
