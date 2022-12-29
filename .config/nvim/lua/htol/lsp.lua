@@ -44,7 +44,7 @@ local function on_attach(client, bufnr)
   --vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
 
   -- Probably redundunt option
-  vim.api.nvim_command("setlocal signcolumn=yes")
+  vim.cmd(string.format('setlocal signcolumn=yes'))
   vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.vim.lsp.tagfunc")
 
 
@@ -61,7 +61,7 @@ local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]w", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[w", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
-  vim.cmd('augroup lsp_aucmds')
+  vim.cmd [[augroup lsp_aucmds]]
   vim.cmd(string.format('au! * <buffer=%d>', bufnr))
   if client.server_capabilities.documentHighlightProvider then
     vim.cmd(string.format('au CursorHold  <buffer=%d> lua vim.lsp.buf.document_highlight()', bufnr))
@@ -93,7 +93,9 @@ end
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
-    float = true,
+    float = {
+        source="always",
+    },
     --virtual_tex = {
     --  spacing = 2,
     --  prefix = '~',
