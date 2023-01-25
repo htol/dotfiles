@@ -171,6 +171,7 @@ lsp.yamlls.setup{ on_attach=on_attach, capabilities=capabilities, }
 lsp.jsonls.setup{
     on_attach=on_attach,
     capabilities=capabilities,
+    cmd = {"fnm", "exec", "--using=14", "vscode-json-languageserver"};
     commands = {
       Format = {
         function()
