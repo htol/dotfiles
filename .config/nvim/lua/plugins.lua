@@ -79,7 +79,7 @@ return require('packer').startup(function(use)
         end
     }
     use 'ful1e5/onedark.nvim'
-    use 'folke/tokyonight.nvim'
+    --use 'folke/tokyonight.nvim'
     use {
         'sonph/onehalf',
         rtp = 'vim',

@@ -189,7 +189,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   on_attach=on_attach,
   capabilities=capabilities,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
@@ -218,6 +218,21 @@ require'lspconfig'.terraformls.setup {
   on_attach=on_attach,
   capabilities=capabilities,
 }
+
+require'lspconfig'.emmet_ls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
+    init_options = {
+      html = {
+        options = {
+          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+          ["bem.enabled"] = true,
+        },
+      },
+    }
+}
+
 
 --vim.lsp.set_log_level("debug")
 M.capabilities = capabilities
