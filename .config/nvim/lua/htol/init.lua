@@ -10,6 +10,12 @@ else
     print('=== Error: cmp failed to load')
 end
 
+if pcall(require, 'symbols-outline') then
+    require("htol.symbols-outline")
+else
+    print('=== Error: cmp failed to load')
+end
+
 if pcall(require, 'lspconfig') then
     require("htol.lsp")
 else

@@ -47,6 +47,12 @@ return require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter-textobjects'}
   use 'nvim-treesitter/playground'
 
+  -- code outline
+  use {
+      'stevearc/aerial.nvim',
+      config = function() require('aerial').setup() end
+    }
+  use 'simrat39/symbols-outline.nvim'
 
   use 'mbbill/undotree'
   -- Git
@@ -67,9 +73,9 @@ return require('packer').startup(function(use)
       end,
     }
 
-    -- 
+    --
     -- Themes
-    -- 
+    --
     use {
         'gruvbox-community/gruvbox',
         config = function()

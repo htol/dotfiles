@@ -163,6 +163,32 @@ lsp.gopls.setup {
 }
 
 lsp.pyright.setup{ on_attach=on_attach, capabilities=capabilities, }
+--lsp.ruff_lsp.setup{
+--  on_attach=on_attach,
+--  capabilities=capabilities,
+--  init_options = {
+--    settings = {
+--      -- Any extra CLI arguments for `ruff` go here.
+--      args = {},
+--    }
+--  }
+--}
+
+--lsp.pylsp.setup{
+--    on_attach=on_attach,
+--    capabilities=capabilities,
+--  settings = {
+--    pylsp = {
+--      plugins = {
+--        pycodestyle = {
+--          ignore = {'W391'},
+--          maxLineLength = 88
+--        }
+--      }
+--    }
+--  }
+--}
+
 
 lsp.vuels.setup{ on_attach=on_attach, capabilities=capabilities, }
 
@@ -222,7 +248,7 @@ require'lspconfig'.terraformls.setup {
 require'lspconfig'.emmet_ls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
+    filetypes = { 'html', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
     init_options = {
       html = {
         options = {
