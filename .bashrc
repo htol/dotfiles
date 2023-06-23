@@ -136,4 +136,6 @@ eval "$(fnm env --use-on-cd)"
 export SDKMAN_DIR="$HOME/.local/sdkman"
 [[ -s "$HOME/.local/sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.local/sdkman/bin/sdkman-init.sh"
 
+[[ -s "/usr/share/fzf/shell/key-bindings.bash" ]] && source "/usr/share/fzf/shell/key-bindings.bash"
+
 [[ -n $HOME ]] && [[ -s "$HOME/.local_aliases" ]] && source "$HOME/.local_aliases"
