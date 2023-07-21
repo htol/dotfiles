@@ -31,6 +31,8 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-emoji'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip' -- depends on L3MON4D3/LuaSnip
 
   --  use 'tjdevries/nlua.nvim'
   --  use 'tjdevries/lsp_extensions.nvim'

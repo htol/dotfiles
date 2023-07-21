@@ -4,12 +4,6 @@ else
     print('=== Error: lspkind failed to load')
 end
 
-if pcall(require, 'cmp') then
-    require("htol.cmp")
-else
-    print('=== Error: cmp failed to load')
-end
-
 if pcall(require, 'symbols-outline') then
     require("htol.symbols-outline")
 else
@@ -26,10 +20,4 @@ if pcall(require, 'telescope') then
     require("htol.telescope")
 else
     print('=== Error: telescope failed to load')
-end
-
-if pcall(require, 'nvim-treesitter.configs') then
-    require("htol.treesitter")
-else
-    print('=== Error: treesitter failed to load')
 end

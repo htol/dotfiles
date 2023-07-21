@@ -61,9 +61,6 @@ vim.fn.matchadd('errorMsg', [[\s\+$]]) -- Highlight trailing whitespaces
 vim.opt.cmdheight=1
 vim.opt.updatetime=50       -- default is 4000ms = 4s
 
--- don't pass messages to |ins-completion-menu|
-vim.opt.shortmess = vim.opt.shortmess + 'c'
-
 vim.opt.mouse='a'
 
 vim.opt.splitbelow = true

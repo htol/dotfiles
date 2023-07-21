@@ -1,7 +1,6 @@
 local M = {}
 local home = os.getenv('HOME')
 
--- set completeopt=menuone,noinsert,noselect
 -- let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 -- nnoremap <leader>vD :lua vim.lsp.buf.declaration()<CR>
 -- nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
