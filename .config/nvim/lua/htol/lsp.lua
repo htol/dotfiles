@@ -189,14 +189,18 @@ lsp.pyright.setup{ on_attach=on_attach, capabilities=capabilities, }
 --}
 
 
-lsp.vuels.setup{ on_attach=on_attach, capabilities=capabilities, }
+lsp.volar.setup{
+    on_attach=on_attach,
+    capabilities=capabilities,
+    filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+}
 
 lsp.yamlls.setup{ on_attach=on_attach, capabilities=capabilities, }
 
 lsp.jsonls.setup{
     on_attach=on_attach,
     capabilities=capabilities,
-    cmd = {"fnm", "exec", "--using=14", "vscode-json-languageserver"};
+    cmd = {"fnm", "exec", "--using=18", "vscode-json-languageserver"};
     commands = {
       Format = {
         function()

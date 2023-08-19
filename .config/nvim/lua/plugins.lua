@@ -20,7 +20,6 @@ return require('packer').startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig'
-  --  use 'hrsh7th/nvim-compe'
   use 'onsails/lspkind-nvim'
 
   -- autocomplete
@@ -59,8 +58,14 @@ return require('packer').startup(function(use)
   use 'mbbill/undotree'
   -- Git
   use 'tpope/vim-fugitive'
-  --  use 'tweekmonster/gofmt.vim'
 
+  use 'numToStr/Comment.nvim'
+
+  use {
+      'nvim-lualine/lualine.nvim', -- Fancier statusline
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+  use 'lewis6991/gitsigns.nvim' -- Add git related info in the signs columns and popups
 
     -- Little know features:
     --   :SSave

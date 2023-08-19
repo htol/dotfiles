@@ -8,6 +8,11 @@ if not ok then
   return
 end
 
+local ok, luasnip = pcall(require, 'luasnip')
+if not ok then
+    return
+end
+
 -- set completeopt=menuone,noinsert,noselect
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 -- don't pass messages to |ins-completion-menu|
@@ -16,7 +21,7 @@ vim.opt.shortmess:append "c"
 cmp.setup {
   snippet = {
     expand = function(args)
-        require("luasnip").lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
     end,
   },
 
@@ -54,7 +59,24 @@ cmp.setup {
         end
       end,
     },
-    ["<tab>"] = cmp.config.disable,
+        ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   },
 
   sources = {

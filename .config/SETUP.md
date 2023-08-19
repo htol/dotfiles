@@ -24,8 +24,8 @@ npm install -g neovim
 All supported lsps
 ```
 go install golang.org/x/tools/gopls@latest  # also for  gopls update
-npm install -g pyright yaml-language-server vscode-json-languageserver
-npm install -g vls typescript typescript-language-server
+npm install -g pyright yaml-language-server vscode-langservers-extracted
+npm install -g @vue/language-server typescript typescript-language-server
 ```
 
 # golang

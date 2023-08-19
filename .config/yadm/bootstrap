@@ -42,9 +42,11 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
     export PATH=$FNM_DIR:$PATH
     curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- -s -d ~/.local/fnm
     eval `fnm env --shell=bash`
-    fnm install v14.19.1
-    fnm use v14.19.1
-    npm install --global yarn
+    fnm install --lts
+    fnm default lts-latest
+    npm install --global npm yarn npx neovim pyright @vue/language-server \
+        emmet-ls yaml-language-server vscode-langservers-extracted \
+        typescript typescript-language-server
   fi
 
   # installing pyenv

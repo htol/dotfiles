@@ -1,4 +1,4 @@
--- nnoremap <leader>vrc :lua require('htol.telescope').search_dotfiles()<CR>
+-- nnoremap <leader>fr :lua require('htol.telescope').search_dotfiles()<CR>
 
 local M = {}
 
@@ -8,7 +8,7 @@ M.search_dotfiles = function()
         prompt_title = "< VimRC >",
         cwd = "$HOME/.config/",
         file_ignore_patterns = {
-            '.git', '.venv', 'venv',
+            '\\.git', '.venv', 'venv',
             'node_modules', 'vim_undodir', 'repo.git', 'plugged',
             'google-chrome/',
         }
