@@ -8,6 +8,21 @@ update_shell_env()
 }
 
 update_shell_env
+update=false
+main()
+{
+    while getopts "u" flag; do
+        echo ${flag}
+        case "${flag}" in
+            u)
+                update=true
+                ;;
+        esac
+    done
+}
+
+main "$@"
+
 
 # Linux, Darwin, FreeBSD
 system_type=$(uname -s)
@@ -36,11 +51,11 @@ fi
 if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
 
   # node.js version manager and Node LTS
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/fnm" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/fnm" ] || [ ${update} = true ]; then
     echo "== Installing fnm, Node, yarn"
     export FNM_DIR="${XDG_DATA_HOME:-$HOME/.local}/fnm"
     export PATH=$FNM_DIR:$PATH
-    curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- -s -d ~/.local/fnm
+    curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --skip-shell --install-dir ~/.local/fnm
     eval `fnm env --shell=bash`
     fnm install --lts
     fnm default lts-latest
@@ -50,15 +65,15 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   fi
 
   # installing pyenv
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv" ] || [ ${update} = true ]; then
     echo "== Installing pyenv"
-    git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
-    git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
-    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+    git -C ~/.local/pyenv pull || git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
+    git -C $(pyenv root)/plugins/pyenv-update pull || git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
+    git -C $(pyenv root)/plugins/pyenv-virtualenv pull || git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
   fi
 
   # installing poetry
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ] || [ ${update} = true ]; then
     echo "== Installing poetry"
     # Should use already defined POETRY_HOME as destination
     curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
@@ -68,9 +83,9 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   fi
 
   # installing ansible
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ] || [ ${update} = true ]; then
     echo "== Installing ansible"
-    git clone --depth 1 https://github.com/ansible/ansible.git ~/.local/ansible
+    git -C ~/.local/ansible pull || git clone --depth 1 https://github.com/ansible/ansible.git ~/.local/ansible
     # . ~/.local/ansible/hacking/env-setup
     # cd ~/.local/ansible
     # python3 -m venv venv
@@ -80,7 +95,7 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   fi
 
   # installing sdkman
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/sdkman" ]; then
+  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/sdkman" ] || [ ${update} = true ]; then
     echo "== Installing sdkman"
     curl -s "https://get.sdkman.io" | bash
   fi
@@ -89,7 +104,7 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   mkdir -p ~/.config/nvim/vim_undodir
 
   # installing fisher and plugins
-  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ]; then
+  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ] || [ ${update} = true ]; then
       echo "== Installing fisher and plugins"
       curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
       # installing plugins
