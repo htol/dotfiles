@@ -49,6 +49,7 @@ augroup YankHighlight
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
 
-autocmd BufWritePre *.go :lua vim.lsp.buf.formatting_sync()
+autocmd BufWritePre *.go :lua vim.lsp.buf.format()
 
 autocmd BufNewFile * silent! 0r $HOME/.config/nvim/templates/%:e.tpl
+
