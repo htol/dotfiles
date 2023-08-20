@@ -2,70 +2,80 @@ local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvi
 
 local packer_bootstrap
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd [[packadd packer.nvim]]
+    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
 end
 
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+augroup end
 ]])
 
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+return require('packer').startup({function(use)
 
-  -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'onsails/lspkind-nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-  -- autocomplete
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-emoji'
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip' -- depends on L3MON4D3/LuaSnip
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+    use 'onsails/lspkind-nvim'
 
-  --  use 'tjdevries/nlua.nvim'
-  --  use 'tjdevries/lsp_extensions.nvim'
-  use 'mfussenegger/nvim-jdtls'
-
-  -- telescope
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
-
-  -- Neovim Tree shitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'nvim-treesitter/nvim-treesitter-textobjects'}
-  use 'nvim-treesitter/playground'
-
-  -- code outline
-  use {
-      'stevearc/aerial.nvim',
-      config = function() require('aerial').setup() end
+    -- autocomplete
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-emoji',
+            {
+                'L3MON4D3/LuaSnip',
+                requires ={
+                    'saadparwaiz1/cmp_luasnip', -- depends on L3MON4D3/LuaSnip
+                    'rafamadriz/friendly-snippets', -- snippets
+                },
+            }
+        }
     }
-  use 'simrat39/symbols-outline.nvim'
 
-  use 'mbbill/undotree'
-  -- Git
-  use 'tpope/vim-fugitive'
+    --  use 'tjdevries/nlua.nvim'
+    --  use 'tjdevries/lsp_extensions.nvim'
+    use 'mfussenegger/nvim-jdtls'
 
-  use 'numToStr/Comment.nvim'
+    -- telescope
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope-fzy-native.nvim'
 
-  use {
-      'nvim-lualine/lualine.nvim', -- Fancier statusline
-      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
-  use 'lewis6991/gitsigns.nvim' -- Add git related info in the signs columns and popups
+    -- Neovim Tree shitter
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter-textobjects'}
+    use 'nvim-treesitter/playground'
+
+    -- code outline
+    use {
+        'stevearc/aerial.nvim',
+        config = function() require('aerial').setup() end
+    }
+    use 'simrat39/symbols-outline.nvim'
+
+    use 'mbbill/undotree'
+    -- Git
+    use 'tpope/vim-fugitive'
+
+    use 'numToStr/Comment.nvim'
+
+    use {
+        'nvim-lualine/lualine.nvim', -- Fancier statusline
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use 'lewis6991/gitsigns.nvim' -- Add git related info in the signs columns and popups
 
     -- Little know features:
     --   :SSave
@@ -73,11 +83,11 @@ return require('packer').startup(function(use)
     --       These are wrappers for mksession that work great. I never have to use
     --       mksession anymore or worry about where things are saved / loaded from.
     use {
-      "mhinz/vim-startify",
-      cmd = { "SLoad", "SSave" },
-      config = function()
-        vim.g.startify_disable_at_vimenter = true
-      end,
+        "mhinz/vim-startify",
+        cmd = { "SLoad", "SSave" },
+        config = function()
+            vim.g.startify_disable_at_vimenter = true
+        end,
     }
 
     --
@@ -106,4 +116,11 @@ return require('packer').startup(function(use)
     if packer_bootstrap then
         require('packer').sync()
     end
-end)
+end,
+config = {
+    display = {
+        open_fn = function()
+            return require('packer.util').float({ border = 'single' })
+        end
+    }
+}})

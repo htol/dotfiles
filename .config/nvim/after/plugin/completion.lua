@@ -12,6 +12,9 @@ local ok, luasnip = pcall(require, 'luasnip')
 if not ok then
     return
 end
+--require("luasnip.loaders.from_lua").load({ paths = "~/.snippets" })
+require("luasnip.loaders.from_vscode").load()
+
 
 -- set completeopt=menuone,noinsert,noselect
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
@@ -80,8 +83,8 @@ cmp.setup {
   },
 
   sources = {
-      { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
+      { name = 'nvim_lua' },
       { name = 'luasnip' },
       { name = 'path' },
       { name = 'buffer', keyword_length = 5 },
