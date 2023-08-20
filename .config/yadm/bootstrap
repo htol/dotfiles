@@ -8,26 +8,31 @@ update_shell_env()
 }
 
 update_shell_env
-update=false
+
+update=""
 main()
 {
-    while getopts "u" flag; do
-        echo ${flag}
+    while getopts ":r:u" flag; do
         case "${flag}" in
             u)
-                update=true
+                update="true"
+                ;;
+            r)
+                update=${OPTARG}
                 ;;
         esac
     done
+    # echo ${update}
 }
 
 main "$@"
-
 
 # Linux, Darwin, FreeBSD
 system_type=$(uname -s)
 
 cd "$HOME"
+LOCAL="${XDG_DATA_HOME:-$HOME/.local}"
+CONF="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 yadm gitconfig core.worktree $HOME
 
@@ -39,23 +44,30 @@ yadm submodule update --recursive --init --remote
 
 
 if [ "$system_type" = "Linux" ]; then
-  echo "== Getting neovim build"
-  mkdir -p ~/.local/nvim/
-  cd ~/.local/nvim
-  NVIM_VERSION="v0.9.1"
-  curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz
-  tar xvfz nvim-linux64.tar.gz
-  nvim="$HOME/.local/nvim/nvim-linux64/bin/nvim"
+    if [[ ! -d "${LOCAL}/nvim" || ${update} == "nvim" ]]; then
+        echo "== Getting neovim build"
+        mkdir -p ${LOCAL}/.local/nvim/
+        cd ${LOCAL}/nvim
+        NVIM_VERSION="v0.9.1"
+        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz
+        tar xvfz nvim-linux64.tar.gz
+        nvim="${LOCAL}/nvim/nvim-linux64/bin/nvim"
+    fi
 fi
 
-if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
+if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
+
+    if [[ ! -d "${CONF}/nvim/vim_undodir" ]]; then
+        echo "== Creating vim_undodir"
+        mkdir -p "${CONF}/nvim/vim_undodir"
+    fi
 
   # node.js version manager and Node LTS
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/fnm" ] || [ ${update} = true ]; then
+  if [[ ! -d "${LOCAL}/fnm" || ${update} = true ]]; then
     echo "== Installing fnm, Node, yarn"
-    export FNM_DIR="${XDG_DATA_HOME:-$HOME/.local}/fnm"
+    export FNM_DIR="${LOCAL}/fnm"
     export PATH=$FNM_DIR:$PATH
-    curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --skip-shell --install-dir ~/.local/fnm
+    curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --skip-shell --install-dir ${LOCAL}/fnm
     eval `fnm env --shell=bash`
     fnm install --lts
     fnm default lts-latest
@@ -65,27 +77,28 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   fi
 
   # installing pyenv
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/pyenv" ] || [ ${update} = true ]; then
+  if [[ ! -d "${LOCAL}/pyenv" || ${update} = true ]]; then
     echo "== Installing pyenv"
-    git -C ~/.local/pyenv pull || git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
+    git -C ${LOCAL}/pyenv pull || git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
     git -C $(pyenv root)/plugins/pyenv-update pull || git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
     git -C $(pyenv root)/plugins/pyenv-virtualenv pull || git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
   fi
 
   # installing poetry
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/poetry" ] || [ ${update} = true ]; then
+  if [[ ! -d "${LOCAL}/poetry" || ${update} = true ]]; then
     echo "== Installing poetry"
     # Should use already defined POETRY_HOME as destination
     curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
-    mkdir -p ~/.config/fish/completions/
-    poetry completions fish > ~/.config/fish/completions/poetry.fish
+    mkdir -p ${CONF}/fish/completions/
+    poetry completions fish > ${CONF}/fish/completions/poetry.fish
+    # TODO: check local paths for bash completion
     # sudo poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
   fi
 
   # installing ansible
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/ansible" ] || [ ${update} = true ]; then
+  if [[ ! -d "${LOCAL}/ansible" || ${update} = true ]]; then
     echo "== Installing ansible"
-    git -C ~/.local/ansible pull || git clone --depth 1 https://github.com/ansible/ansible.git ~/.local/ansible
+    git -C ${LOCAL}/ansible pull || git clone --depth 1 https://github.com/ansible/ansible.git ${LOCAL}/ansible
     # . ~/.local/ansible/hacking/env-setup
     # cd ~/.local/ansible
     # python3 -m venv venv
@@ -95,20 +108,20 @@ if [ "$system_type" = "Linux" ] || [ "$system_type" = "Darwin" ]; then
   fi
 
   # installing sdkman
-  if [ ! -d "${XDG_DATA_HOME:-$HOME/.local}/sdkman" ] || [ ${update} = true ]; then
+  if [[ ! -d "${LOCAL}/sdkman" || ${update} = true || ${update} = sdkman ]]; then
     echo "== Installing sdkman"
-    curl -s "https://get.sdkman.io" | bash
+    if [[ ! -f "${LOCAL}/sdkman/bin/sdkman-init.sh" ]]; then
+        curl -s "https://get.sdkman.io" | bash
+    else
+        source "${LOCAL}/sdkman/bin/sdkman-init.sh"
+        sdk selfupdate force
+    fi
   fi
 
-  echo "== Creating directories for Vim"
-  mkdir -p ~/.config/nvim/vim_undodir
-
   # installing fisher and plugins
-  if [ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/fish/functions/fisher.fish" ] || [ ${update} = true ]; then
+  if [[ ! -f "${CONF}/fish/functions/fisher.fish" || ${update} = true || ${update} = fish ]]; then
       echo "== Installing fisher and plugins"
-      curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-      # installing plugins
-      fish -c 'fisher update'
+      /usr/bin/env fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher jomik/fish-gruvbox jethrokuan/fzf'
   fi
 
 fi # Linux or Darwin
