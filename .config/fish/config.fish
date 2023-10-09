@@ -3,7 +3,7 @@ if status is-interactive
   . ~/.config/common_env
 
   if test -f /opt/homebrew/bin/brew
-      eval "$(/opt/homebrew/bin/brew shellenv)"
+      eval (/opt/homebrew/bin/brew shellenv)
   end
 
   if functions -q theme_gruvbox

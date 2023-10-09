@@ -79,10 +79,12 @@ vim.opt.formatoptions = vim.opt.formatoptions
 
 -- FILE BROWSER:
 vim.g.netrw_banner = 0              -- disable banner
-vim.g.netrw_browse_split = 4        -- open in prev window
-vim.g.netrw_altv = 1                -- open splits to the right
+vim.g.netrw_preview = 1             -- vertical split for preview
 vim.g.netrw_liststyle = 3           -- tree view
-vim.g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
+vim.g.netrw_winsize = 30            -- use only 30% of screen for netrw
+vim.g.netrw_browse_split = 4        -- open in prev window
+--vim.g.netrw_altv = 1                -- open splits to the right
+--vim.g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
 -- check |netrw-browse-maps| for mappings
 
 -- disable unused providers
