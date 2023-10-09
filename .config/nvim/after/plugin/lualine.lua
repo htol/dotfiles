@@ -13,6 +13,12 @@ local function lsp_progress()
   return table.concat(status, " | ") .. " " .. spinners[frame + 1]
 end
 
+local function short_hostname()
+    local fqdn = vim.loop.os_gethostname()
+    _, _, host = string.find(fqdn, "^(.-)%..*$")
+  return host
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -25,7 +31,7 @@ require('lualine').setup {
          'filename',
          {lsp_progress},
      },
-     lualine_z = {'location', 'hostname'}
+     lualine_z = {'location', {short_hostname}}
  },
 }
 
