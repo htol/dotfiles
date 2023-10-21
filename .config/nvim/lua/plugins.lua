@@ -96,13 +96,19 @@ return require('packer').startup({function(use)
     use {
         'gruvbox-community/gruvbox',
         config = function()
-            vim.cmd('colorscheme gruvbox')
+            --vim.cmd('colorscheme gruvbox')
             --vim.opt.background='dark'
             vim.cmd('highlight Normal guibg=none')
         end
     }
     use 'ful1e5/onedark.nvim'
     --use 'folke/tokyonight.nvim'
+    use {
+        'LunarVim/lunar.nvim',
+        config = function()
+            vim.cmd('colorscheme lunar')
+        end
+    }
     use {
         'sonph/onehalf',
         rtp = 'vim',
