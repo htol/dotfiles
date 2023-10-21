@@ -1,94 +1,113 @@
 local home = vim.fn.expand('~')
 
-vim.g.mapleader =  " "
 
-vim.opt.termguicolors = true
-vim.opt.guicursor = ""
+local opts = {
+	fileencoding="utf-8",
+	pumheight = 10, --maximum items in popup
+	showmode = false,
+	ignorecase = true,
+	smartcase = true,
 
-vim.opt.syntax = 'on'
 
-vim.opt.keymap='russian-jcukenwin'
-vim.opt.iminsert=0
-vim.opt.imsearch=0
+	termguicolors = true,
+	guicursor = "",
 
-vim.opt.clipboard = "unnamedplus"
+	syntax = 'on',
 
--- setlocal spell spelllang=ru_yo,en_us
+	keymap='russian-jcukenwin',
+	iminsert=0,
+	imsearch=0,
 
-vim.opt.tags = vim.opt.tags + (home .. "/.config/nvim/tags")
-vim.opt.tags = vim.opt.tags + (home .. "/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags")
+	clipboard = "unnamedplus",
 
--- Ignore compiled files
-vim.opt.wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
+	-- setlocal spell spelllang=ru_yo,en_us
 
--- Cool floating window popup menu for completion on command line
-vim.opt.pumblend = 17
-vim.opt.wildmode = "longest:full"
-vim.opt.wildoptions = "pum"
+	tags = vim.opt.tags + (home .. "/.config/nvim/tags"),
+	tags = vim.opt.tags + (home .. "/.local/nvim/nvim-linux64/share/nvim/runtime/doc/tags"),
 
--- Tabs
-vim.opt.tabstop=4
-vim.opt.softtabstop=4
-vim.opt.shiftwidth=4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+	-- Ignore compiled files
+	wildignore = vim.opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" },
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wrap = true              -- do not wrap line of text
-vim.opt.hlsearch = false
-vim.opt.hidden = true              -- do not unload buffers, keep it in background
-vim.opt.errorbells = false
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir=(home .. '/.config/nvim/vim_undodir')
-vim.opt.undofile = true
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.scrolloff=8
-vim.opt.colorcolumn='120'
-vim.opt.signcolumn = 'yes'
+	-- Cool floating window popup menu for completion on command line
+	pumblend = 17,
+	wildmode = "longest:full",
+	wildoptions = "pum",
 
--- vim.opt.listchars = {
---     eol='↵',
---     trail='~',
---     tab='>-',
---     nbsp='␣'
--- }
--- vim.opt.list = true
+	-- Tabs
+	tabstop=4,
+	softtabstop=4,
+	shiftwidth=4,
+	expandtab = true,
+	smartindent = true,
+
+	number = true,
+	relativenumber = true,
+	wrap = true,              -- do not wrap line of text
+	hlsearch = false,
+	hidden = true,              -- do not unload buffers, keep it in background
+	errorbells = false,
+	swapfile = false,
+	backup = false,
+	undodir=(home .. '/.config/nvim/vim_undodir'),
+	undofile = true,
+	incsearch = true,
+	scrolloff=8,
+	colorcolumn='120',
+	signcolumn = 'yes',
+
+	-- vim.opt.listchars = {
+	--     eol='↵',
+	--     trail='~',
+	--     tab='>-',
+	--     nbsp='␣'
+	-- }
+	-- vim.opt.list = true
+
+	cmdheight=1,
+	updatetime=50,       -- default is 4000ms = 4s
+
+	mouse='a',
+
+	splitbelow = true,
+	splitright = true,
+
+	formatoptions = vim.opt.formatoptions
+	- "a" -- Auto formatting is BAD.
+	- "t" -- Don't auto format my code. I got linters for that.
+	+ "c" -- In general, I like it when comments respect textwidth
+	+ "q" -- Allow formatting comments w/ gq
+	- "o" -- O and o, don't continue comments
+	+ "r" -- But do continue when pressing enter.
+	+ "n" -- Indent past the formatlistpat, not underneath it.
+	+ "j" -- Auto-remove comments if possible.
+	- "2" -- I'm not in gradeschool anymore
+}
+
+local  globals = {
+	mapleader =  " ",
+	maplocalleader =  " ",
+	-- FILE BROWSER:
+	netrw_banner = 0,              -- disable banner
+	netrw_preview = 1,             -- vertical split for preview
+	--netrw_altv = 1,                -- open splits to the right
+	netrw_liststyle = 3,           -- tree view
+	netrw_winsize = 30,            -- use only 30% of screen for netrw
+	netrw_browse_split = 4,        -- open in prev window
+	--netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]], -- use .gitignore
+	-- check |netrw-browse-maps| for mappings
+
+	-- disable unused providers
+	loaded_ruby_provider = 0,
+	loaded_perl_provider = 0,
+	loaded_python_provider = 0,
+	python3_host_prog = (home .. '/.local/pyenv/versions/neovim3/bin/python')
+}
+
 vim.fn.matchadd('errorMsg', [[\s\+$]]) -- Highlight trailing whitespaces
+for k, v in pairs(opts) do
+	vim.opt[k] = v
+end
 
-vim.opt.cmdheight=1
-vim.opt.updatetime=50       -- default is 4000ms = 4s
-
-vim.opt.mouse='a'
-
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.formatoptions = vim.opt.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
-
--- FILE BROWSER:
-vim.g.netrw_banner = 0              -- disable banner
-vim.g.netrw_preview = 1             -- vertical split for preview
-vim.g.netrw_liststyle = 3           -- tree view
-vim.g.netrw_winsize = 30            -- use only 30% of screen for netrw
-vim.g.netrw_browse_split = 4        -- open in prev window
---vim.g.netrw_altv = 1                -- open splits to the right
---vim.g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
--- check |netrw-browse-maps| for mappings
-
--- disable unused providers
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python_provider = 0
-vim.g.python3_host_prog = (home .. '/.local/pyenv/versions/neovim3/bin/python')
+for k, v in pairs(globals) do
+	vim.g[k] = v
+end
