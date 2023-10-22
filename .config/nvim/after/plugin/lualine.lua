@@ -22,7 +22,8 @@ end
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    --theme = 'gruvbox',
+    theme = 'lunar',
     component_separators = '|',
     section_separators = '',
   },

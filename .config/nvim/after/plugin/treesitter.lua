@@ -4,8 +4,8 @@ end
 
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-        "go", "python", "c", "cpp", "rust", "bash", "html", "javascript",
-        "json", "yaml", "toml", "lua", "vue", "java", "kotlin", "hcl",
+        "go", "python", "rust", "bash", "html", "css", "javascript", "typescript",
+        "json", "yaml", "toml", "lua", "vue",
         "sql", "query", "vim", "vimdoc"
     },
     sync_install = false,

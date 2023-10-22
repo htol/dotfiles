@@ -48,9 +48,9 @@ if [ "$system_type" = "Linux" ]; then
         echo "== Getting neovim build"
         mkdir -p ${LOCAL}/.local/nvim/
         cd ${LOCAL}/nvim
-        NVIM_VERSION="v0.9.2"
-        #curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz
-        #tar xvfz nvim-linux64.tar.gz
+        NVIM_VERSION="v0.9.4"
+        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz
+        tar xvfz nvim-linux64.tar.gz
         #nvim="${LOCAL}/nvim/nvim-linux64/bin/nvim"
         curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim.appimage
         chmod u+x nvim.appimage
