@@ -19,8 +19,13 @@ return require('packer').startup({function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+
     -- LSP
-    use 'neovim/nvim-lspconfig'
+    use {
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'neovim/nvim-lspconfig',
+    }
     use 'onsails/lspkind-nvim'
 
     -- autocomplete
@@ -69,7 +74,12 @@ return require('packer').startup({function(use)
     -- Git
     use 'tpope/vim-fugitive'
 
-    use 'numToStr/Comment.nvim'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
     use {
         'nvim-lualine/lualine.nvim', -- Fancier statusline
@@ -93,15 +103,15 @@ return require('packer').startup({function(use)
     --
     -- Themes
     --
-    use {
-        'gruvbox-community/gruvbox',
-        config = function()
-            --vim.cmd('colorscheme gruvbox')
-            --vim.opt.background='dark'
-            vim.cmd('highlight Normal guibg=none')
-        end
-    }
-    use 'ful1e5/onedark.nvim'
+    -- use {
+    --     'gruvbox-community/gruvbox',
+    --     config = function()
+    --         --vim.cmd('colorscheme gruvbox')
+    --         --vim.opt.background='dark'
+    --         vim.cmd('highlight Normal guibg=none')
+    --     end
+    -- }
+    -- use 'ful1e5/onedark.nvim'
     --use 'folke/tokyonight.nvim'
     use {
         'LunarVim/lunar.nvim',
@@ -109,10 +119,10 @@ return require('packer').startup({function(use)
             vim.cmd('colorscheme lunar')
         end
     }
-    use {
+    --[[ use {
         'sonph/onehalf',
         rtp = 'vim',
-    }
+    } ]]
 
     -- startup screen
     -- use 'goolord/alpha-nvim'
