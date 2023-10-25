@@ -46,7 +46,8 @@ yadm submodule update --recursive --init --remote
 if [ "$system_type" = "Linux" ]; then
     if [[ ! -d "${LOCAL}/nvim" || ${update} == "nvim" ]]; then
         echo "== Getting neovim build"
-        mkdir -p ${LOCAL}/.local/nvim/
+        rm -rf ${LOCAL}/nvim
+        mkdir -p ${LOCAL}/nvim
         cd ${LOCAL}/nvim
         NVIM_VERSION="v0.9.4"
         curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz

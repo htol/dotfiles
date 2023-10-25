@@ -1,37 +1,27 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
-local packer_bootstrap
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd([[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
-]])
-
-
-return require('packer').startup({function(use)
-
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
-
+require('lazy').setup({
     -- LSP
-    use {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig',
-    }
-    use 'onsails/lspkind-nvim'
+    'onsails/lspkind-nvim',
 
     -- autocomplete
-    use {
+    {
         'hrsh7th/nvim-cmp',
-        requires = {
+       dependencies = {
             'hrsh7th/vim-vsnip',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
@@ -40,65 +30,66 @@ return require('packer').startup({function(use)
             'hrsh7th/cmp-emoji',
             {
                 'L3MON4D3/LuaSnip',
-                requires ={
+                dependencies = {
                     'saadparwaiz1/cmp_luasnip', -- depends on L3MON4D3/LuaSnip
                     'rafamadriz/friendly-snippets', -- snippets
                 },
             }
         }
-    }
+    },
 
     --  use 'tjdevries/nlua.nvim'
     --  use 'tjdevries/lsp_extensions.nvim'
-    use 'mfussenegger/nvim-jdtls'
+    'mfussenegger/nvim-jdtls',
 
     -- telescope
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-fzy-native.nvim',
 
     -- Neovim Tree shitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use {'nvim-treesitter/nvim-treesitter-textobjects'}
-    use 'nvim-treesitter/playground'
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
+        version = nil,
+    },
+    'nvim-treesitter/nvim-treesitter-textobjects',
 
     -- code outline
-    use {
+    {
         'stevearc/aerial.nvim',
-        config = function() require('aerial').setup() end
-    }
-    use 'simrat39/symbols-outline.nvim'
+        config = true,
+    },
+    'simrat39/symbols-outline.nvim',
 
-    use 'mbbill/undotree'
+    'mbbill/undotree',
     -- Git
-    use 'tpope/vim-fugitive'
+    'tpope/vim-fugitive',
 
-    use {
+    {
         'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
+        config = true,
+    },
 
-    use {
+    {
         'nvim-lualine/lualine.nvim', -- Fancier statusline
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-    use 'lewis6991/gitsigns.nvim' -- Add git related info in the signs columns and popups
+        dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+    },
+    'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
 
     -- Little know features:
     --   :SSave
     --   :SLoad
     --       These are wrappers for mksession that work great. I never have to use
     --       mksession anymore or worry about where things are saved / loaded from.
-    use {
+    {
         "mhinz/vim-startify",
         cmd = { "SLoad", "SSave" },
         config = function()
             vim.g.startify_disable_at_vimenter = true
         end,
-    }
+    },
 
     --
     -- Themes
@@ -113,30 +104,13 @@ return require('packer').startup({function(use)
     -- }
     -- use 'ful1e5/onedark.nvim'
     --use 'folke/tokyonight.nvim'
-    use {
+    {
         'LunarVim/lunar.nvim',
         config = function()
             vim.cmd('colorscheme lunar')
         end
-    }
-    --[[ use {
-        'sonph/onehalf',
-        rtp = 'vim',
-    } ]]
+    },
 
     -- startup screen
     -- use 'goolord/alpha-nvim'
-
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end,
-config = {
-    display = {
-        open_fn = function()
-            return require('packer.util').float({ border = 'single' })
-        end
-    }
-}})
+})

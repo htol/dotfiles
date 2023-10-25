@@ -1,4 +1,3 @@
-" loadding plugins with packer
 lua require('options')
 lua require('plugins')
 lua require('htol')
