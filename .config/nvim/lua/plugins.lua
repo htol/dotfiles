@@ -12,15 +12,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+{ "folke/which-key.nvim", opts = {}},
     -- LSP
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
+        --'williamboman/mason.nvim',
+        --'williamboman/mason-lspconfig.nvim',
         'neovim/nvim-lspconfig',
     'onsails/lspkind-nvim',
 
     -- autocomplete
     {
         'hrsh7th/nvim-cmp',
+        event = "InsertEnter",
        dependencies = {
             'hrsh7th/vim-vsnip',
             'hrsh7th/cmp-buffer',
@@ -29,7 +31,7 @@ require('lazy').setup({
             'hrsh7th/cmp-nvim-lua',
             'hrsh7th/cmp-emoji',
             {
-                'L3MON4D3/LuaSnip',
+               'L3MON4D3/LuaSnip',
                 dependencies = {
                     'saadparwaiz1/cmp_luasnip', -- depends on L3MON4D3/LuaSnip
                     'rafamadriz/friendly-snippets', -- snippets
@@ -57,24 +59,24 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter-textobjects',
 
     -- code outline
-    {
-        'stevearc/aerial.nvim',
-        config = true,
-    },
-    'simrat39/symbols-outline.nvim',
+    -- {
+    --     'stevearc/aerial.nvim',
+    --     config = true,
+    -- },
+    -- 'simrat39/symbols-outline.nvim',
 
     'mbbill/undotree',
     -- Git
     'tpope/vim-fugitive',
 
-    {
-        'numToStr/Comment.nvim',
-        config = true,
-    },
+    -- {
+    --     'numToStr/Comment.nvim',
+    --     config = true,
+    -- },
 
     {
         'nvim-lualine/lualine.nvim', -- Fancier statusline
-        dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
 

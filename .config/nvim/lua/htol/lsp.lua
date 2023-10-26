@@ -1,34 +1,34 @@
 local M = {}
 local home = os.getenv('HOME')
 
-require('mason').setup()
-require("mason-lspconfig").setup {
-    ensure_installed = {
-        "lua_ls",
-        "stylua",
-        "luachecker",
-
-        "tailwindcss",
-        "emmet_ls",
-        "eslint_d",
-        "prettierd",
-        "volar",
-        "tsserver",
-
-        "pyright",
-        "ruff_lsp",
-
-        "clangd",
-        "gopls",
-        "rust_analyzer",
-
-        "yamlls",
-        "jsonls",
-        "terraformls",
-
-
-    }
-}
+-- require('mason').setup()
+-- require("mason-lspconfig").setup {
+--     ensure_installed = {
+--         "lua_ls",
+--         "stylua",
+--         "luachecker",
+--
+--         "tailwindcss",
+--         "emmet_ls",
+--         "eslint_d",
+--         "prettierd",
+--         "volar",
+--         "tsserver",
+--
+--         "pyright",
+--         "ruff_lsp",
+--
+--         "clangd",
+--         "gopls",
+--         "rust_analyzer",
+--
+--         "yamlls",
+--         "jsonls",
+--         "terraformls",
+--
+--
+--     }
+-- }
 
 -- let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 -- nnoremap <leader>vD :lua vim.lsp.buf.declaration()<CR>
