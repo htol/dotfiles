@@ -12,11 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-{ "folke/which-key.nvim", opts = {}},
+    {"folke/which-key.nvim", opts = {}},
     -- LSP
-        --'williamboman/mason.nvim',
-        --'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
     'onsails/lspkind-nvim',
 
     -- autocomplete
@@ -40,8 +40,6 @@ require('lazy').setup({
         }
     },
 
-    --  use 'tjdevries/nlua.nvim'
-    --  use 'tjdevries/lsp_extensions.nvim'
     'mfussenegger/nvim-jdtls',
 
     -- telescope
@@ -53,26 +51,29 @@ require('lazy').setup({
     -- Neovim Tree shitter
     {
         'nvim-treesitter/nvim-treesitter',
+        version = false,
         build = ':TSUpdate',
-        version = nil,
+        init = function(plugin)
+            -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+            -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+            -- no longer trigger the **nvim-treeitter** module to be loaded in time.
+            -- Luckily, the only thins that those plugins need are the custom queries, which we make available
+            -- during startup.
+            require("lazy.core.loader").add_to_rtp(plugin)
+            require("nvim-treesitter.query_predicates")
+        end,
+        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" }
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
-
-    -- code outline
-    -- {
-    --     'stevearc/aerial.nvim',
-    --     config = true,
-    -- },
-    -- 'simrat39/symbols-outline.nvim',
 
     'mbbill/undotree',
     -- Git
     'tpope/vim-fugitive',
 
-    -- {
-    --     'numToStr/Comment.nvim',
-    --     config = true,
-    -- },
+    {
+        'numToStr/Comment.nvim',
+        config = true,
+    },
 
     {
         'nvim-lualine/lualine.nvim', -- Fancier statusline
@@ -114,5 +115,5 @@ require('lazy').setup({
     },
 
     -- startup screen
-    -- use 'goolord/alpha-nvim'
+    'goolord/alpha-nvim'
 })
