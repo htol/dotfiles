@@ -22,7 +22,7 @@ require('lazy').setup({
     -- autocomplete
     {
         'hrsh7th/nvim-cmp',
-        event = "InsertEnter",
+        --event = "InsertEnter",
        dependencies = {
             'hrsh7th/vim-vsnip',
             'hrsh7th/cmp-buffer',
