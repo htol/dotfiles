@@ -6,7 +6,7 @@ o.imsearch=0
 
 o.fileencoding="utf-8"
 o.pumheight = 10 --maximum items in popup
-o.showmode = falsei
+o.showmode = false
 o.ignorecase = true
 o.smartcase = true
 
@@ -38,6 +38,9 @@ o.softtabstop=4
 o.shiftwidth=4
 o.expandtab = true
 o.smartindent = true
+
+-- o.inccommand = "split" -- creates window for incremental staff like %s/xxx/yyy to show changes
+-- o.virtualedit = "block" -- change ctrl+v behavior and allow to select actually block with empty space
 
 o.number = true
 o.relativenumber = true
