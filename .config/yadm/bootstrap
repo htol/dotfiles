@@ -49,13 +49,13 @@ if [ "$system_type" = "Linux" ]; then
         rm -rf ${LOCAL}/nvim
         mkdir -p ${LOCAL}/nvim
         cd ${LOCAL}/nvim
-        NVIM_VERSION="v0.9.4"
-        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.tar.gz
-        tar xvfz nvim-linux64.tar.gz
-        #nvim="${LOCAL}/nvim/nvim-linux64/bin/nvim"
-        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim.appimage
-        chmod u+x nvim.appimage
-        ./nvim.appimage --appimage-extract
+        NVIM_VERSION="v0.11.0"
+        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.tar.gz
+        tar xvfz nvim-linux-x86_64.tar.gz
+        #nvim="${LOCAL}/nvim/nvim-linux-x86_64/bin/nvim"
+        curl -LO https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.appimage
+        chmod u+x nvim-linux-x86_64.appimage
+        ./nvim-linux-x86_64.appimage --appimage-extract
         nvim="${LOCAL}/nvim/squashfs-root/bin/nvim"
     fi
 fi
