@@ -5,18 +5,14 @@ require('mason').setup()
 require("mason-lspconfig").setup {
     ensure_installed = {
         "lua_ls",
-        "stylua",
-        "luachecker",
 
         "tailwindcss",
         "emmet_ls",
-        "eslint_d",
-        "prettierd",
         "volar",
-        "tsserver",
+        "ts_ls",
 
         "pyright",
-        "ruff_lsp",
+        "ruff",
 
         "clangd",
         "gopls",
@@ -133,7 +129,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 }
 )
 
-lsp.tsserver.setup { on_attach = on_attach }
+lsp.ts_ls.setup { on_attach = on_attach }
 
 lsp.clangd.setup {
     on_attach = on_attach,
@@ -190,7 +186,7 @@ lsp.gopls.setup {
 }
 
 lsp.pyright.setup { on_attach = on_attach, capabilities = capabilities, }
-lsp.ruff_lsp.setup {
+lsp.ruff.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
