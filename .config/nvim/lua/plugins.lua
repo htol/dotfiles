@@ -51,7 +51,7 @@ require('lazy').setup({
     -- Neovim Tree shitter
     {
         'nvim-treesitter/nvim-treesitter',
-        version = false,
+        version = nil,
         build = ':TSUpdate',
         init = function(plugin)
             -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
