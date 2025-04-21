@@ -9,6 +9,7 @@
   st = status
   br = branch
   ci = commit -m
+  ce = !git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"
   cia = commit -a -m
   lp = log --oneline
   last = log -1 HEAD --
@@ -23,3 +24,5 @@
   ff = only
 [push]
   default = current
+[url "git@gitlab.booking.com:"]
+	insteadOf = https://gitlab.booking.com/
