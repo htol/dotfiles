@@ -1,0 +1,8 @@
+config-file = ?optional-config-file
+font-family = "Menlo"
+font-size = 15
+
+maximize = true
+
+shell-integration-features = sudo
+macos-option-as-alt = true
