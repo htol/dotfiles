@@ -1,5 +1,6 @@
 local M = {}
 local home = os.getenv('HOME')
+local keymap = vim.keymap.set
 
 require('mason').setup()
 require("mason-lspconfig").setup {
@@ -24,64 +25,37 @@ require("mason-lspconfig").setup {
     }
 }
 
--- let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
--- nnoremap <leader>vD :lua vim.lsp.buf.declaration()<CR>
--- nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
--- nnoremap gd :lua vim.lsp.buf.definition()<CR>
--- nnoremap gt :lua vim.lsp.buf.type_definition()<CR>
--- nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
--- nnoremap gi :lua vim.lsp.buf.implementation()<CR>
--- nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
--- nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
--- nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
--- nnoremap K :lua vim.lsp.buf.hover()<CR>
--- nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
--- nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
--- nnoremap <leader>vf :lua vim.lsp.buf.formatting()<CR>
-
 -- array of mappings to setup; {<capability_name>, <mode>, <lhs>, <rhs>}
 local key_mappings = {
     { "documentFormattingProvider", "n", "gq", "<Cmd>lua vim.lsp.buf.formatting{async = true}<CR>" },
     { "documentRangeFormattingProvider", "v", "gq", "<Esc><Cmd>lua vim.lsp.buf.range_formatting()<CR>" },
-    { "referencesProvider", "n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>" },
-    { "hoverProvider", "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
-    { "implementationProvider", "n", "gD", "<Cmd>lua vim.lsp.buf.implementation()<CR>" },
+    --{ "hoverProvider", "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
     { "signatureHelpProvider", "i", "<c-space>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>" },
     { "workspaceSymbolProvider", "n", "gW", "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>" },
-    { "codeActionProvider", "n", "<a-a>", "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
+    --{ "codeActionProvider", "n", "<a-a>", "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
     { "codeActionProvider", "n", "<leader>r", "<Cmd>lua vim.lsp.buf.code_action { only = 'refactor' }<CR>" },
     { "codeActionProvider", "v", "<a-a>", "<Esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>" },
     { "codeActionProvider", "v", "<leader>r", "<Esc><Cmd>lua vim.lsp.buf.range_code_action { only = 'refactor'}<CR>" },
 }
 
 local function on_attach(client, bufnr)
-    -- works with 0.7.0
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    keymap("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    keymap("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    keymap("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    keymap("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
 
-    --vim.api.nvim_buf_set_var(bufnr, "lsp_client_id", client.id)
-    --vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    --vim.api.nvim_buf_set_option(bufnr, "bufhidden", "hide")
-
-    -- Probably redundunt option
-    vim.cmd(string.format('setlocal signcolumn=yes'))
-    vim.api.nvim_buf_set_option(bufnr, 'tagfunc', "v:lua.vim.lsp.tagfunc")
-
-
-    local opts = { silent = true; }
+    local opts = { silent = true, buffer = 0 }
     for _, mappings in pairs(key_mappings) do
         local capability, mode, lhs, rhs = unpack(mappings)
         if client.server_capabilities[capability] then
-            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+            keymap(mode, lhs, rhs, opts)
         end
     end
 
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "crr", "<Cmd>lua vim.lsp.buf.rename(vim.fn.input('New Name: '))<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "i", "<c-n>", "<Cmd>lua require('lsp_compl').trigger_completion()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "]w", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "[w", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    keymap("n", "crr", "<Cmd>lua vim.lsp.buf.rename(vim.fn.input('New Name: '))<CR>", opts)
+    keymap("i", "<c-n>", "<Cmd>lua require('lsp_compl').trigger_completion()<CR>", opts)
+    keymap("n", "]w", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    keymap("n", "[w", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
     vim.cmd [[augroup lsp_aucmds]]
     vim.cmd(string.format('au! * <buffer=%d>', bufnr))
@@ -91,8 +65,8 @@ local function on_attach(client, bufnr)
         vim.cmd(string.format('au CursorMoved <buffer=%d> lua vim.lsp.buf.clear_references()', bufnr))
     end
     if vim.lsp.codelens and client.server_capabilities.codeLensProvider then
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>cr", "<Cmd>lua vim.lsp.codelens.refresh()<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ce", "<Cmd>lua vim.lsp.codelens.run()<CR>", opts)
+        keymap("n", "<leader>cr", vim.lsp.codelens.refresh, opts)
+        keymap("n", "<leader>ce", vim.lsp.codelens.run, opts)
     end
     vim.cmd('augroup end')
 
@@ -212,9 +186,6 @@ lsp.jsonls.setup {
 }
 
 
-local sumneko_root_path = home .. '/.local/lua-language-server'
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -222,7 +193,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 require 'lspconfig'.lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" };
+    cmd = { 'lua-language-server' };
     settings = {
         Lua = {
             runtime = {
