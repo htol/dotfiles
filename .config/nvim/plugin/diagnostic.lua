@@ -20,5 +20,6 @@ vim.diagnostic.config({
       },
       severity = { min = vim.diagnostic.severity.HINT },
   },
-
 })
+
+vim.keymap.set('n', 'td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, {desc = 'Toggle diagnostic'})
