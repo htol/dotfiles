@@ -1,15 +1,15 @@
-local ok, cmp = pcall(require, 'cmp')
-if not ok then
+local cmp = PCall('cmp')
+if not cmp then
     return
 end
 
-local ok, lspkind = pcall(require, "lspkind")
-if not ok then
+local lspkind = PCall('lspkind')
+if not lspkind then
   return
 end
 
-local ok, luasnip = pcall(require, 'luasnip')
-if not ok then
+local luasnip = PCall('luasnip')
+if not luasnip then
     return
 end
 --require("luasnip.loaders.from_lua").load({ paths = "~/.snippets" })
