@@ -1,26 +1,18 @@
 # TODO:
 Move all this staff to bootstrap  
-Make components updatable
 
 # Hello
 Short notes for enviroment setup.
 
 some X related staff
 ```
-sudo apt-get -y install rofi nitrogen kitty flameshot kbdd
+sudo apt-get -y install rofi nitrogen flameshot kbdd
 # TODO: manual build for
-# polybar picom alacritty
-```
-adding providers for neovim
-```
-pyenv virtualenv 3.x.x neovim3
-pyenv activate neovim3 && \
-pip install neovim && \
-pyenv deactivate && \
-npm install -g neovim
+# polybar picom alacritty ghostty
 ```
 
-# For nvim lsp
+# For nvim lsp (optional, depricated)
+Ussualy lsp servers will be installed via Masson
 All supported lsps
 ```
 go install golang.org/x/tools/gopls@latest  # also for  gopls update
@@ -53,33 +45,11 @@ curl -s "https://get.sdkman.io" | bash
 sdk install gradle
 ```
 
-# pyenv
-```
-git clone https://github.com/pyenv/pyenv.git ~/.local/pyenv
-echo 'export PYENV_ROOT="$HOME/.local/pyenv"' >> ~/.zshrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-```
-
-Next packages are required to build python from source
+# Next packages are required to build python from source on Ubuntu (optional)
 ```
 sudo apt update && sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
-```
-
-Install python by pyenv
-```
-pyenv install 3.8.9
-pyenv global 3.8.9
-```
-
-# poetry
-```
-echo 'export POETRY_HOME="$HOME/.local/poetry"' >> ~/.zshrc
-echo 'export PATH="$POETRY_HOME/bin:$PATH"' >> ~/.zshrc
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - --no-modify-path
-poetry config virtualenvs.in-project true
 ```
 
 # ansible
@@ -87,7 +57,6 @@ poetry config virtualenvs.in-project true
 git clone https://github.com/ansible/ansible.git ~/.local/ansible
 pip install -r ~/.local/ansible/requirements.txt
 ```
-
 
 # macosx soft
 ```

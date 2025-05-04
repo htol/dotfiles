@@ -62,6 +62,15 @@ fi
 
 if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
 
+    if [[ ! -f "${LOCAL}/bin/uv" ]]; then
+        echo "== Installing uv"
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        uv python install 3.13
+        uv python pin --global 3.13
+        uv venv --no-project --seed "${LOCAL}/venv/neovim"
+        ${LOCAL}/venv/neovim/bin/python3 -m pip install -U pip neovim
+    fi
+
     if [[ ! -d "${CONF}/nvim/vim_undodir" ]]; then
         echo "== Creating vim_undodir"
         mkdir -p "${CONF}/nvim/vim_undodir"
@@ -79,25 +88,6 @@ if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
     npm install --global npm yarn npx neovim pyright @vue/language-server \
         emmet-ls yaml-language-server vscode-langservers-extracted \
         typescript typescript-language-server
-  fi
-
-  # installing pyenv
-  if [[ ! -d "${LOCAL}/pyenv" || ${update} = true ]]; then
-    echo "== Installing pyenv"
-    #git -C ${LOCAL}/pyenv pull || git clone https://github.com/pyenv/pyenv.git ${LOCAL}/pyenv
-    #git -C $(pyenv root)/plugins/pyenv-update pull || git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
-    #git -C $(pyenv root)/plugins/pyenv-virtualenv pull || git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-  fi
-
-  # installing poetry
-  if [[ ! -d "${LOCAL}/poetry" || ${update} = true ]]; then
-    echo "== Installing poetry"
-    # Should use already defined POETRY_HOME as destination
-    curl -sSL https://install.python-poetry.org | python3 - --git https://github.com/python-poetry/poetry.git@master
-    mkdir -p ${CONF}/fish/completions/
-    poetry completions fish > ${CONF}/fish/completions/poetry.fish
-    # TODO: check local paths for bash completion
-    # sudo poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
   fi
 
   # installing ansible

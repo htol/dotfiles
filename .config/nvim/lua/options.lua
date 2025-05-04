@@ -101,4 +101,4 @@ g.netrw_browse_split = 4        -- open in prev window
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_python_provider = 0
-g.python3_host_prog = (home .. '/.local/pyenv/versions/neovim3/bin/python')
+g.python3_host_prog = (home .. '/.local/venv/neovim/bin/python')
