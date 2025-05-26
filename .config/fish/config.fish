@@ -2,7 +2,7 @@ if status is-interactive
 
   . ~/.config/common_env
 
-  if test -f /opt/homebrew/bin/brew
+  if [ -f /opt/homebrew/bin/brew ]
       eval (/opt/homebrew/bin/brew shellenv)
   end
 
@@ -13,11 +13,18 @@ if status is-interactive
   if [ -f /usr/bin/keychain ]
     keychain --dir $KEYCHAIN_DIR --agents ssh id_rsa id_ed25519
   end
-  set CDPATH . ~/repos ~/go/src ~/winrepos
+
+  set CDPATH . ~/ ~/repos ~/go/src ~/winrepos
 
 
   begin
-    set -l HOSTNAME (hostname)
+      if [ -f /bin/hostname ]
+          set HOSTNAME (/bin/hostname)
+      else if [ -f /bin/hostnamectl ]
+          set HOSTNAME (/bin/hostnamectl hostname)
+      else
+          set HOSTNAME 'localhost'
+      end
     if test -f $KEYCHAIN_DIR/$HOSTNAME-fish
         source $KEYCHAIN_DIR/$HOSTNAME-fish
     end
