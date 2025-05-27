@@ -62,13 +62,13 @@ fi
 
 if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
 
-    if [[ ! -f "${LOCAL}/bin/uv" ]]; then
+    if [[ ! -f "${HOME}/.local/bin/uv" ]]; then
         echo "== Installing uv"
         curl -LsSf https://astral.sh/uv/install.sh | sh
         uv python install 3.13
         uv python pin --global 3.13
-        uv venv --no-project --seed "${LOCAL}/venv/neovim"
-        ${LOCAL}/venv/neovim/bin/python3 -m pip install -U pip neovim
+        uv venv --no-project --seed "${HOME}/.local/venv/neovim"
+        ${HOME}/.local/venv/neovim/bin/python3 -m pip install -U pip neovim
     fi
 
     if [[ ! -d "${CONF}/nvim/vim_undodir" ]]; then
@@ -91,9 +91,9 @@ if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
   fi
 
   # installing ansible
-  if [[ ! -d "${LOCAL}/ansible" || ${update} = true ]]; then
+  if [[ ! -d "${HOME}/.local/ansible" || ${update} = true ]]; then
     echo "== Installing ansible"
-    git -C ${LOCAL}/ansible pull || git clone --depth 1 https://github.com/ansible/ansible.git ${LOCAL}/ansible
+    git -C ${HOME}/.local/ansible pull || git clone --depth 1 https://github.com/ansible/ansible.git ${LOCAL}/ansible
     # . ~/.local/ansible/hacking/env-setup
     # cd ~/.local/ansible
     # python3 -m venv venv
