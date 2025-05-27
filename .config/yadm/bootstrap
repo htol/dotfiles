@@ -103,12 +103,12 @@ if [[ "$system_type" = "Linux" || "$system_type" = "Darwin" ]]; then
   fi
 
   # installing sdkman
-  if [[ ! -d "${LOCAL}/sdkman" || ${update} = true || ${update} = sdkman ]]; then
+  if [[ ! -d "${HOME}/.local/sdkman" || ${update} = true || ${update} = sdkman ]]; then
     echo "== Installing sdkman"
-    if [[ ! -f "${LOCAL}/sdkman/bin/sdkman-init.sh" ]]; then
+    if [[ ! -f "${HOME}/.local/sdkman/bin/sdkman-init.sh" ]]; then
         curl -s "https://get.sdkman.io" | bash
     else
-        source "${LOCAL}/sdkman/bin/sdkman-init.sh"
+        source "${HOME}/.local/sdkman/bin/sdkman-init.sh"
         sdk selfupdate force
     fi
   fi
