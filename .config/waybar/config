@@ -1,5 +1,6 @@
 {
   "position": "top",
+  "reload_style_on_change": true,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
@@ -12,23 +13,29 @@
     "battery",
     "battery#bat2",
     //"upower",
-    "backlight/slider",
     "backlight",
     "tray",
     "keyboard-state",
     "sway/language",
-    "clock"
+    "clock",
+    "custom/notification"
   ],
   "backlight": {
     "device": "intel_backlight",
     "format": "{percent}% {icon}",
-    "format-icons": ["", ""]
+    "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
   },
-  "backlight/slider": {
-    "min": 1,
-    "max": 100,
-    "orientation": "horizontal",
-    "device": "intel_backlight"
+  "cpu":{
+      "interval": 1,
+      "format": "{usage}% ",
+      "max-length": 10
+
+  },
+  "memory":{
+      "interval": 10,
+      "format": "MEM: {percentage}% ",
+      //"max-length": 10
+
   },
   "bluetooth": {
 	// "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
@@ -40,15 +47,15 @@
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
   },
   "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "format": "<span foreground='#f5c2e7'>{:%a %d %H:%M}</span>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
   },
   "battery": {
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 20,
+      "critical":10 
     },
-    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format": "{capacity}% {icon}",
     "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
     "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
     "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
@@ -69,7 +76,7 @@
     "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
   },
   "pulseaudio": {
-      "format": "{icon}  {volume}%",
+      "format": "{volume}% {icon}",
       "format-muted": "",
       "format-icons": {
           "default": ["", "", " "]
@@ -79,5 +86,25 @@
   "tray": {
     "icon-size": 21,
     "spacing": 10
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
 }
