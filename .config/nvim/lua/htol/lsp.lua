@@ -9,7 +9,7 @@ require("mason-lspconfig").setup {
 
         "tailwindcss",
         "emmet_ls",
-        "volar",
+        "vue_ls",
         "ts_ls",
 
         "pyright",
