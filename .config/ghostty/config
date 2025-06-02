@@ -13,3 +13,5 @@ maximize = true
 
 shell-integration-features = sudo
 macos-option-as-alt = true
+
+background-opacity = 0.3
