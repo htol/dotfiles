@@ -20,13 +20,12 @@ map("n", "<leader>ff", function() require('telescope.builtin').find_files(
     {
         hidden = true,
         file_ignore_patterns = file_ignore_patterns
-    }) end)
-map("n", "<leader>fr", search_dotfiles)
-map("n", "<leader>fg", function() require('telescope.builtin').live_grep() end)
-map("n", "<leader>fb", function() require('telescope.builtin').buffers() end)
-map("n", "<leader>fh", function() require('telescope.builtin').help_tags() end)
+    }) end, {desc="Telescope find file"})
+map("n", "<leader>fr", search_dotfiles, {desc="Telescope select dotfile"})
+map("n", "<leader>fg", function() require('telescope.builtin').live_grep() end, {desc="Telescope live grep"})
+map("n", "<leader>fb", function() require('telescope.builtin').buffers() end, {desc="Telescope show opened buffers"})
+map("n", "<leader>fh", function() require('telescope.builtin').help_tags() end, {desc="Telescope help tags"})
 map("n", "<leader>fx", require('telescope.builtin').resume, {noremap=true, silent=true, desc="Resume last picker"})
-
 
 return {
     {

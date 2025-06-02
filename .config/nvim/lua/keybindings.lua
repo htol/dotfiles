@@ -4,8 +4,7 @@ map("n", "<Space>", "<Nop>")
 
 map("n", "<Leader>W", ":w !sudo tee % > /dev/null")
 map("n", "<Leader>w", ":w")
-map("n", "<Leader><CR>", ":so ~/.config/nvim/init.vim<cr>")
-map("n", "<Leader>b", ":ls<cr>:b<Space>")
+map("n", "<Leader><CR>", ":source %<cr>")
 
 map("v", "<Leader>p", "\"_dP")
 --vnoremap J :m '>+1<CR>gv=gv
@@ -15,7 +14,7 @@ map("v", "<Leader>p", "\"_dP")
 map("n", "]c", "]czz")
 map("n", "[c", "[czz")
 map("n", "<F2>", ":Telescope<CR>")
---map("n", "<F5>", ":w<CR>:make<CR>")
+map("n", "<F5>", ":w<CR>:make<CR>")
 
 -- more centered views
 -- zv - open folds
