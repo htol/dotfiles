@@ -155,7 +155,9 @@ if [ "$system_type" = "Darwin" ]; then
     ###############################################################################
     #defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$HOME/.config/iterm"
     #defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
-    /usr/libexec/PlistBuddy -c 'set "New Bookmarks":0:"Scrollback Lines" 50000' $PREF/com.googlecode.iterm2.plist
+    if [[ -f "${PREF}/com.googlecode.iterm2.plist" ]]; then
+        /usr/libexec/PlistBuddy -c 'set "New Bookmarks":0:"Scrollback Lines" 50000' $PREF/com.googlecode.iterm2.plist
+    fi
 
 	###############################################################################
     # Finder                                                                      #

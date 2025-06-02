@@ -60,17 +60,12 @@ pip install -r ~/.local/ansible/requirements.txt
 
 # macosx soft
 ```
-brew cask install firefox visual-studio-code libreoffice wireshark iterm2 virtualbox virtualbox-extension-pack vagrant vlc dash
+brew install fish nushell fzf rg fd ghostty visual-studio-code iterm2 vlc sublime-text nvim emacs \
+colima docker golang p7zip htop btop jq bat rectangle netcat tmux nushell scroll-reverser
 ```
 
 # macosx system settings
 Check bootstrap! There is already a banch of setting to configure macosx. Here is only often used.
-
-fonts:
-```
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
-```
 
 Don't create "DS_Store" on remote shares:
 ```

@@ -2,6 +2,9 @@ if status is-interactive
 
   . ~/.config/common_env
 
+  # Print a new line after any command
+  source ~/.config/fish/functions/postexec_newline.fish
+
   if [ -f /opt/homebrew/bin/brew ]
       eval (/opt/homebrew/bin/brew shellenv)
   end
