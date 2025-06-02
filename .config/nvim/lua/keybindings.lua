@@ -11,15 +11,6 @@ map("v", "<Leader>p", "\"_dP")
 --vnoremap J :m '>+1<CR>gv=gv
 --vnoremap K :m '<-2<CR>gv=gv
 
--- Telescope
-map("n", "<Leader>ps", function() require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")}) end)
-map("n", "<leader>ff", function() require('telescope.builtin').find_files({hidden = true, file_ignore_patterns = {'.git', '.venv', 'venv', 'node_modules'}}) end)
-map("n", "<leader>fr", function() require('htol.telescope').search_dotfiles() end)
-map("n", "<leader>fg", function() require('telescope.builtin').live_grep() end)
-map("n", "<leader>fb", function() require('telescope.builtin').buffers() end)
-map("n", "<leader>fh", function() require('telescope.builtin').help_tags() end)
-map("n", "<leader>fx", require('telescope.builtin').resume, {noremap=true, silent=true, desc="Resume last picker"})
-
 -- go to next/previous changes in diff and center the line on screen
 map("n", "]c", "]czz")
 map("n", "[c", "[czz")
