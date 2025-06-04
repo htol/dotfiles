@@ -5,36 +5,46 @@ local file_ignore_patterns = {
     'google-chrome/', 'BraveSoftware/', 'discord/', 'go/',
 }
 
--- TODO: get output from 'yadm list' to reduce number of files
 local search_dotfiles = function()
     require("telescope.builtin").find_files({
-        prompt_title = "< VimRC >",
+        prompt_title = "< files in .config >",
         cwd = "$HOME/.config/",
         file_ignore_patterns = file_ignore_patterns
     })
 end
 
-map("n", "<leader>uc", function() require('telescope.builtin').colorscheme({enable_preview = true}) end, {noremap=true, silent=true, desc="Change colorscheme"})
-map("n", "<Leader>ps", function() require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")}) end)
-map("n", "<leader>ff", function() require('telescope.builtin').find_files(
-    {
-        hidden = true,
-        file_ignore_patterns = file_ignore_patterns
-    }) end, {desc="Telescope find file"})
-map("n", "<leader>fr", search_dotfiles, {desc="Telescope select dotfile"})
-map("n", "<leader>fg", function() require('telescope.builtin').live_grep() end, {desc="Telescope live grep"})
-map("n", "<leader>fb", function() require('telescope.builtin').buffers() end, {desc="Telescope show opened buffers"})
-map("n", "<leader>fh", function() require('telescope.builtin').help_tags() end, {desc="Telescope help tags"})
-map("n", "<leader>fx", require('telescope.builtin').resume, {noremap=true, silent=true, desc="Resume last picker"})
-
 return {
     {
-        'nvim-telescope/telescope.nvim',
-        dependencies = {
-            'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim',
+        {
+            'nvim-telescope/telescope.nvim',
+            dependencies = {
+                'nvim-lua/popup.nvim',
+                'nvim-lua/plenary.nvim',
+                'nvim-telescope/telescope-ui-select.nvim',
+                { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            },
+            config = function()
+                require('telescope').setup({
+                        extensions = {
+                            ['fzf'] = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true, case_mode = 'smart_case' },
+                            ['ui-select'] = { require('telescope.themes').get_dropdown() }
+                        },
+                        vimgrep_argument = { 'rg', '--smart-case' }
+                })
+
+                require 'telescope'.load_extension('fzf')
+                require 'telescope'.load_extension('ui-select')
+
+                local builtin = require("telescope.builtin")
+                map("n", "<leader>uc", function() builtin.colorscheme({enable_preview = true}) end, {noremap=true, silent=true, desc="Change colorscheme"})
+                map("n", "<Leader>ps", function() builtin.grep_string({ search = vim.fn.input("Grep for > ")}) end)
+                map("n", "<leader>ff", function() builtin.find_files({ hidden = true, file_ignore_patterns = file_ignore_patterns }) end, {desc="Telescope find file"})
+                map("n", "<leader>fr", search_dotfiles, {desc="Telescope select dotfile"})
+                map("n", "<leader>fg", builtin.live_grep, {desc="Telescope live grep"})
+                map("n", "<leader>fb", builtin.buffers, {desc="Telescope show opened buffers"})
+                map("n", "<leader>fh", builtin.help_tags, {desc="Telescope help tags"})
+                map("n", "<leader>fx", builtin.resume, {noremap=true, silent=true, desc="Resume last picker"})
+            end
         },
-        'nvim-telescope/telescope-ui-select.nvim',
-        'nvim-telescope/telescope-fzy-native.nvim',
     },
 }
