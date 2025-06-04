@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<Space>", "<Nop>")
+map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 map("n", "<Leader>W", ":w !sudo tee % > /dev/null")
 map("n", "<Leader>w", ":w")
@@ -34,8 +35,8 @@ map("i", ")", ")<c-g>u")
 map("i", "=", "=<c-g>u")
 
 -- Jumplist mutations
-map("n", "k", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'", {expr=true})
-map("n", "j", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'", {expr=true})
+map("n", "k", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'", { expr = true })
+map("n", "j", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'", { expr = true })
 
 -- Moving text. Line or selection
 map("v", "J", ":m '>+1<CR>gv=gv")
@@ -46,7 +47,7 @@ map("n", "<Leader>j", ":m .+1<CR>==")
 map("n", "<Leader>k", ":m .-2<CR>==")
 
 -- switch keyboard layouts by C-F instead of C-^
-map({"c", "n", "i", "v"}, "<C-f>", "<C-^>", {remap=true, silent=true})
+map({ "c", "n", "i", "v" }, "<C-f>", "<C-^>", { remap = true, silent = true })
 
 -- In WSL copy to windows clipboard via clip.exe
 -- TODO: implement in lua
