@@ -85,12 +85,11 @@ return {
                   return hl
                 end,
               },
-              getfenv
-            }
-          }
-        },
+            },
+          },
+        }, -- menu
 
-      },
+      },   -- completion
 
       -- snippets = { preset = 'mini_snippets' },
 
