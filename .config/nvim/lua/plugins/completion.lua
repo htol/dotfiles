@@ -5,6 +5,7 @@ return {
       'rafamadriz/friendly-snippets',
       'echasnovski/mini.icons',
       -- { 'echasnovski/mini.snippets', version = '*', opts = {} },
+      'folke/lazydev.nvim',
     },
 
     version = '1.*',
@@ -49,12 +50,15 @@ return {
         nerd_font_variant = 'mono'
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
       completion = {
-        documentation = { auto_show = true },
         ghost_text = { show_with_menu = true },
+        documentation = {
+          auto_show = true,
+          window = { border = 'single' },
+        },
 
         menu = {
+          border = 'single',
           draw = {
             treesitter = { 'lsp' },
             columns = { { 'item_idx' }, { 'kind_icon' }, { 'kind' }, { 'label', 'label_description', gap = 1 } },
@@ -81,6 +85,7 @@ return {
                   return hl
                 end,
               },
+              getfenv
             }
           }
         },
@@ -89,17 +94,13 @@ return {
 
       -- snippets = { preset = 'mini_snippets' },
 
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lazydev', 'lsp', 'path', 'snippets' },
+        providers = {
+          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+        },
       },
 
-      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-      -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-      -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-      --
-      -- See the fuzzy documentation for more information
       fuzzy = {
         implementation = "prefer_rust_with_warning",
         sorts = {
@@ -114,6 +115,7 @@ return {
         keymap = { preset = 'inherit' },
         completion = { menu = { auto_show = true }, },
       }
+
     },
     opts_extend = { "sources.default" }
   }

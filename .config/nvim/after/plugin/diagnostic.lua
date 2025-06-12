@@ -1,5 +1,8 @@
+local keymap = vim.keymap.set
+
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_lines = false,
+  virtual_text = true,
   underline = false,
   severity_sort = true,
   update_in_insert = true,
@@ -20,5 +23,4 @@ vim.diagnostic.config({
   },
 })
 
-vim.keymap.set('n', 'td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end,
-  { desc = 'Toggle diagnostic' })
+keymap('n', 'td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = 'Toggle diagnostic' })
