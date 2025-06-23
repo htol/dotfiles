@@ -39,11 +39,9 @@ return {
 
     config = function()
       --vim.lsp.set_log_level("debug")
+      local lsp = require('lspconfig')
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-      -- probably not required anymore b.c. of lazydev and there will be two client instead of one
-      -- require("lspconfig").lua_ls.setup { capabilites = capabilities }
 
       vim.lsp.config('*', {
         capabilities = capabilities,
@@ -106,117 +104,123 @@ return {
           end
         end,
       }) -- LspAttach autocmd
-    end, -- config
 
-    opts = {
-      servers = {
-        gopls = {
-          cmd = { "gopls", "serve" },
-          settings = {
-            gopls = {
-              experimentalPostfixCompletions = true,
-              analyses = {
-                unusedparams = true,
-                shadow = true,
-              },
-              staticcheck = true,
-              usePlaceholders = true,
-              --linksInHover = false,
-              codelenses = {
-                generate = true,
-                gc_details = true,
-                regenerate_cgo = true,
-                tidy = true,
-                upgrade_dependency = true,
-                vendor = true,
-              },
+
+      lsp.gopls.setup {
+        cmd = { "gopls", "serve" },
+        settings = {
+          gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+            },
+            staticcheck = true,
+            usePlaceholders = true,
+            --linksInHover = false,
+            codelenses = {
+              generate = true,
+              gc_details = true,
+              regenerate_cgo = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
             },
           },
-        }, -- gopls
-
-        ts_ls = {},
-
-        clangd = {
-          root_dir = function() return vim.uv.cwd() end
         },
+      } -- gopls
 
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              imports = {
-                granularity = {
-                  group = "module",
-                },
-                prefix = "self",
+      --ts_ls = {},
+
+      --local vue_ls_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server/"
+      local tsdk_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/typescript/lib"
+      lsp.volar.setup {
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+          typescript = {
+            tsdk = tsdk_path
+          },
+        },
+      }
+
+      lsp.clangd.setup {
+        root_dir = function() return vim.uv.cwd() end
+      }
+
+      lsp.rust_analyzer.setup {
+        settings = {
+          ["rust-analyzer"] = {
+            imports = {
+              granularity = {
+                group = "module",
               },
-              cargo = {
-                buildScripts = {
-                  enable = true,
-                },
-              },
-              procMacro = {
-                enable = true
-              },
-            }
-          }
-        },
-
-        pyright = {},
-
-        ruff = {
-          init_options = {
-            settings = {
-              -- Any extra CLI arguments for `ruff` go here.
-              args = {},
-            }
-          }
-        },
-
-        --pylsp={
-        --  settings = {
-        --    pylsp = {
-        --      plugins = {
-        --        pycodestyle = {
-        --          ignore = {'W391'},
-        --          maxLineLength = 88
-        --        }
-        --      }
-        --    }
-        --  }
-        --},
-
-        volar = {
-          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' }
-        },
-
-        yamlls = {},
-
-        jsonls = {
-          cmd = { "fnm", "exec", "--using=18", "vscode-json-languageserver" },
-          commands = {
-            Format = {
-              function()
-                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
-              end
-            }
-          }
-        },
-
-        terraformls = {},
-
-        emmet_ls = {
-          filetypes = { 'html', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
-          init_options = {
-            html = {
-              options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ["bem.enabled"] = true,
+              prefix = "self",
+            },
+            cargo = {
+              buildScripts = {
+                enable = true,
               },
             },
+            procMacro = {
+              enable = true
+            },
           }
-        },
+        }
+      }
 
-      }, -- servers
-    },   -- opts
+      lsp.pyright.setup {}
+
+      lsp.ruff.setup {
+        init_options = {
+          settings = {
+            -- Any extra CLI arguments for `ruff` go here.
+            args = {},
+          }
+        }
+      }
+
+      --lsp.pylsp.setup{
+      --  settings = {
+      --    pylsp = {
+      --      plugins = {
+      --        pycodestyle = {
+      --          ignore = {'W391'},
+      --          maxLineLength = 88
+      --        }
+      --      }
+      --    }
+      --  }
+      --}
+
+      lsp.yamlls.setup {}
+
+      lsp.jsonls.setup {
+        cmd = { "fnm", "exec", "--using=18", "vscode-json-languageserver" },
+        commands = {
+          Format = {
+            function()
+              vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+            end
+          }
+        }
+      }
+
+      lsp.terraformls.setup {}
+
+      lsp.emmet_ls.setup {
+        filetypes = { 'html', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
+        init_options = {
+          html = {
+            options = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+              ["bem.enabled"] = true,
+            },
+          },
+        }
+      }
+    end, -- config
   },
 }
