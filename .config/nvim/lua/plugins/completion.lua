@@ -54,11 +54,11 @@ return {
         ghost_text = { show_with_menu = true },
         documentation = {
           auto_show = true,
-          window = { border = 'single' },
+          window = { border = 'rounded' },
         },
 
         menu = {
-          border = 'single',
+          border = 'rounded',
           draw = {
             treesitter = { 'lsp' },
             columns = { { 'item_idx' }, { 'kind_icon' }, { 'kind' }, { 'label', 'label_description', gap = 1 } },

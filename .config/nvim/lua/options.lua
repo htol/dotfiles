@@ -1,10 +1,10 @@
 local home = vim.fn.expand('~')
 local o = vim.opt
-o.keymap='russian-jcukenwin'
-o.iminsert=0
-o.imsearch=0
+o.keymap = 'russian-jcukenwin'
+o.iminsert = 0
+o.imsearch = 0
 
-o.fileencoding="utf-8"
+o.fileencoding = "utf-8"
 o.pumheight = 10 --maximum items in popup
 o.showmode = false
 o.ignorecase = true
@@ -32,10 +32,12 @@ o.pumblend = 17
 o.wildmode = "longest:full"
 o.wildoptions = "pum"
 
+o.winborder = "rounded"
+
 -- Tabs
-o.tabstop=4
-o.softtabstop=4
-o.shiftwidth=4
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
 o.expandtab = true
 o.smartindent = true
 
@@ -44,17 +46,17 @@ o.smartindent = true
 
 o.number = true
 o.relativenumber = true
-o.wrap = true              -- do not wrap line of text
+o.wrap = true   -- do not wrap line of text
 o.hlsearch = false
-o.hidden = true              -- do not unload buffers, keep it in background
+o.hidden = true -- do not unload buffers, keep it in background
 o.errorbells = false
 o.swapfile = false
 o.backup = false
-o.undodir=(home .. '/.config/nvim/vim_undodir')
+o.undodir = (home .. '/.config/nvim/vim_undodir')
 o.undofile = true
 o.incsearch = true
-o.scrolloff=8
-o.colorcolumn='120'
+o.scrolloff = 8
+o.colorcolumn = '120'
 o.signcolumn = 'yes'
 
 -- vim.opt.listchars = {
@@ -65,35 +67,35 @@ o.signcolumn = 'yes'
 -- }
 -- vim.opt.list = true
 
-o.cmdheight=1
-o.updatetime=50       -- default is 4000ms = 4s
+o.cmdheight = 1
+o.updatetime = 50 -- default is 4000ms = 4s
 
-o.mouse='a'
+o.mouse = 'a'
 
 o.splitbelow = true
 o.splitright = true
 
 o.formatoptions = vim.opt.formatoptions
-- "a" -- Auto formatting is BAD.
-- "t" -- Don't auto format my code. I got linters for that.
-+ "c" -- In general, I like it when comments respect textwidth
-+ "q" -- Allow formatting comments w/ gq
-- "o" -- O and o, don't continue comments
-+ "r" -- But do continue when pressing enter.
-+ "n" -- Indent past the formatlistpat, not underneath it.
-+ "j" -- Auto-remove comments if possible.
-- "2" -- I'm not in gradeschool anymore
+    - "a" -- Auto formatting is BAD.
+    - "t" -- Don't auto format my code. I got linters for that.
+    + "c" -- In general, I like it when comments respect textwidth
+    + "q" -- Allow formatting comments w/ gq
+    - "o" -- O and o, don't continue comments
+    + "r" -- But do continue when pressing enter.
+    + "n" -- Indent past the formatlistpat, not underneath it.
+    + "j" -- Auto-remove comments if possible.
+    - "2" -- I'm not in gradeschool anymore
 
-local  g = vim.g
-g.mapleader =  " "
-g.maplocalleader =  " "
+local g = vim.g
+g.mapleader = " "
+g.maplocalleader = " "
 -- FILE BROWSER:
-g.netrw_banner = 0              -- disable banner
-g.netrw_preview = 1             -- vertical split for preview
+g.netrw_banner = 0       -- disable banner
+g.netrw_preview = 1      -- vertical split for preview
 --g.netrw_altv = 1                -- open splits to the right
-g.netrw_liststyle = 3           -- tree view
-g.netrw_winsize = 30            -- use only 30% of screen for netrw
-g.netrw_browse_split = 4        -- open in prev window
+g.netrw_liststyle = 3    -- tree view
+g.netrw_winsize = 30     -- use only 30% of screen for netrw
+g.netrw_browse_split = 4 -- open in prev window
 --g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]], -- use .gitignore
 -- check |netrw-browse-maps| for mappings
 

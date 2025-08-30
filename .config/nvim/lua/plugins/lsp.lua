@@ -12,26 +12,27 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'mason-org/mason.nvim', opts = {}, },
-      {
-        'mason-org/mason-lspconfig.nvim',
-        opts = {
-          ensure_installed = {
-            "lua_ls",
-            "tailwindcss",
-            "emmet_ls",
-            "vue_ls",
-            "ts_ls",
-            "pyright",
-            "ruff",
-            "clangd",
-            "gopls",
-            "rust_analyzer",
-            "yamlls",
-            "jsonls",
-            "terraformls",
-          }, -- ensure_installed
-        },   -- mason-lspconfig opts
-      },     -- mason-lspconfig
+      -- {
+      --   'mason-org/mason-lspconfig.nvim',
+      --   opts = {
+      --     automatic_enable = false,
+      --     ensure_installed = {
+      --       "lua_ls",
+      --       "tailwindcss",
+      --       "emmet_ls",
+      --       "vue_ls",
+      --       "ts_ls",
+      --       "pyright",
+      --       "ruff",
+      --       "clangd",
+      --       "gopls",
+      --       "rust_analyzer",
+      --       "yamlls",
+      --       "jsonls",
+      --       "terraformls",
+      --     }, -- ensure_installed
+      --   },   -- mason-lspconfig opts
+      -- },     -- mason-lspconfig
       'saghen/blink.cmp',
       -- status updates for LSP.
       { 'j-hui/fidget.nvim',    opts = {} },
@@ -170,6 +171,8 @@ return {
           }
         }
       }
+
+      lsp.lua_ls.setup {}
 
       lsp.pyright.setup {}
 
