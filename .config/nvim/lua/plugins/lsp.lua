@@ -40,7 +40,6 @@ return {
 
     config = function()
       --vim.lsp.set_log_level("debug")
-      local lsp = require('lspconfig')
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
@@ -107,7 +106,7 @@ return {
       }) -- LspAttach autocmd
 
 
-      lsp.gopls.setup {
+      vim.lsp.config('gopls', {
         cmd = { "gopls", "serve" },
         settings = {
           gopls = {
@@ -129,13 +128,14 @@ return {
             },
           },
         },
-      } -- gopls
+      }) -- gopls
+      vim.lsp.enable('gopls')
 
       --ts_ls = {},
 
       --local vue_ls_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server/"
       local tsdk_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/typescript/lib"
-      lsp.volar.setup {
+      vim.lsp.config('vue_ls', {
         filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
         init_options = {
           vue = {
@@ -145,13 +145,15 @@ return {
             tsdk = tsdk_path
           },
         },
-      }
+      })
+      vim.lsp.enable('vue_ls')
 
-      lsp.clangd.setup {
+      vim.lsp.config('clangd', {
         root_dir = function() return vim.uv.cwd() end
-      }
+      })
+      vim.lsp.enable('clangd')
 
-      lsp.rust_analyzer.setup {
+      vim.lsp.config('rust_analyzer', {
         settings = {
           ["rust-analyzer"] = {
             imports = {
@@ -170,20 +172,24 @@ return {
             },
           }
         }
-      }
+      })
+      vim.lsp.enable('rust_analyzer')
 
-      lsp.lua_ls.setup {}
+      vim.lsp.config('lua_ls', {})
+      vim.lsp.enable('lua_ls')
 
-      lsp.pyright.setup {}
+      vim.lsp.config('pyright', {})
+      vim.lsp.enable('pyright')
 
-      lsp.ruff.setup {
+      vim.lsp.config('ruff', {
         init_options = {
           settings = {
             -- Any extra CLI arguments for `ruff` go here.
             args = {},
           }
         }
-      }
+      })
+      vim.lsp.enable('ruff')
 
       --lsp.pylsp.setup{
       --  settings = {
@@ -198,9 +204,10 @@ return {
       --  }
       --}
 
-      lsp.yamlls.setup {}
+      vim.lsp.config('yamlls', {})
+      vim.lsp.enable('yamlls')
 
-      lsp.jsonls.setup {
+      vim.lsp.config('jsonls', {
         cmd = { "fnm", "exec", "--using=18", "vscode-json-languageserver" },
         commands = {
           Format = {
@@ -209,11 +216,13 @@ return {
             end
           }
         }
-      }
+      })
+      vim.lsp.enable('jsonls')
 
-      lsp.terraformls.setup {}
+      vim.lsp.config('terraformls', {})
+      vim.lsp.enable('terraformls')
 
-      lsp.emmet_ls.setup {
+      vim.lsp.config('emmet_ls', {
         filetypes = { 'html', 'htmldjango', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
         init_options = {
           html = {
@@ -223,7 +232,8 @@ return {
             },
           },
         }
-      }
+      })
+      vim.lsp.enable('emmet_ls')
     end, -- config
   },
 }
