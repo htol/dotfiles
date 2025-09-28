@@ -8,7 +8,7 @@ local file_ignore_patterns = {
 local search_dotfiles = function()
   require("telescope.builtin").find_files({
     prompt_title = "< files in .config >",
-    cwd = "$HOME/.config/",
+    cwd = "~/.config/",
     file_ignore_patterns = file_ignore_patterns
   })
 end
